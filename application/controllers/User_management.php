@@ -39,4 +39,9 @@ class User_Management extends MainController
         $this->output('consent/v_user_management');
         
     }
+    public function show_add_user()
+    {
+        $this->output('consent/v_add_user');
+        
+    }
 }
