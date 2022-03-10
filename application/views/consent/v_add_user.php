@@ -6,75 +6,57 @@
 </head>
 
 <style>
-@mixin object-center {
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
+
+.input-container {
+    width: 60%;
+    margin: 50px 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    border: 1px solid #aaa;
+    border-radius: 3px;
 }
 
-$circleSize: 165px;
-$radius: 100px;
-$shadow: 0 0 10px 0 rgba(255, 255, 255, .35);
-$fontColor: rgb(250, 250, 250);
+.input-container input {
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    border: 0;
+    outline: none;
+    color: #333;
+}
 
-.profile-pic {
-    color: transparent;
-    transition: all .3s ease;
-    @include object-center;
+i {
+    margin: 0 10px;
+    color: #aaa;
+    cursor: default;
+}
+
+.show-password {
     position: relative;
-    transition: all .3s ease;
-
-    input {
-        display: none;
-    }
-
-    img {
-        position: absolute;
-        object-fit: cover;
-        width: $circleSize;
-        height: $circleSize;
-        box-shadow: $shadow;
-        border-radius: $radius;
-        z-index: 0;
-    }
-
-    .-label {
-        cursor: pointer;
-        height: $circleSize;
-        width: $circleSize;
-    }
-
-    &:hover {
-        .-label {
-            @include object-center;
-            background-color: rgba(0, 0, 0, .8);
-            z-index: 10000;
-            color: $fontColor;
-            transition: background-color .2s ease-in-out;
-            border-radius: $radius;
-            margin-bottom: 0;
-        }
-    }
-
-    span {
-        display: inline-flex;
-        padding: .2em;
-        height: 2em;
-    }
 }
 
-/////////////////////////
-// Body styling 🐾
-/////////---------->
+.show-password i{
+    user-select: none;
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}
 
-body {
-    height: 100vh;
-    background-color: rgb(25, 24, 21);
-    @include object-center;
+.m-65{
+    padding: 15px;
+    margin-right: 65px;
+}
 
-    a:hover {
-        text-decoration: none;
-    }
+.d-n{
+    display: none;
+}
+
+.img-user{
+    border-radius: 184px;
+    width: 300px;
+    height: 300px;
+    background-position: center;
 }
 </style>
 
@@ -82,7 +64,7 @@ body {
 
 
     <div class="container-fluid py-4">
-        <div class="row">
+        <div class="row ">
             <div class="col-12">
                 <div class="card mb-4">
                     <div class="card-header pb-0">
@@ -90,22 +72,23 @@ body {
 
 
                         <div class="container">
-                            <div class="row">
-                                <div class="col">
+                            <div class="row justify-content-center">
+                                <div class="col-auto m-65">
                                     <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
-                                        id="output" width="400" />
+                                        id="output" width="400" class="img-user" />
                                     <div class="profile-pic">
-                                        <label class="-label" for="file">
+                                   
+                                        <label class="btn btn-outline-primary d-grid gap-2 mt-3" for="file">
                                             <span class="glyphicon glyphicon-camera"></span>
                                             <span>Change Image</span>
                                         </label>
-                                        <input id="file" type="file" onchange="loadFile(event)" />
+                                        <input id="file" type="file" onchange="loadFile(event)" class="d-n"/>
 
                                     </div>
                                 </div>
 
 
-                                <div class="col">
+                                <div class="col-6">
                                     <form>
                                         <div class="form-group">
                                             <label class="form-control-label">Student ID</label>
@@ -123,8 +106,14 @@ body {
                                         <div class="form-group">
                                             <label for="example-password-input"
                                                 class="form-control-label">Password</label>
-                                            <input class="form-control " type="password" value="password" id="password">
+                                                <div class=" show-password">
+
+                                                    <input class="form-control " type="password" value="password" id="password">
+                                                    <i class="material-icons visibility">visibility_off</i>
+                                                </div>
                                         </div>
+
+
                                         <div class="form-group">
                                             <label class="form-control-label">Cluster</label>
                                             <input class="form-control" type="text" id="cluster">
@@ -161,8 +150,21 @@ body {
 </html>
 
 <script>
-var loadFile = function(event) {
-    var image = document.getElementById("output");
-    image.src = URL.createObjectURL(event.target.files[0]);
-};
+const visibilityToggle = document.querySelector('.visibility');
+
+const input = document.querySelector('.show-password input');
+
+var password = true;
+
+visibilityToggle.addEventListener('click', function() {
+    if (password) {
+        input.setAttribute('type', 'text');
+        visibilityToggle.innerHTML = 'visibility';
+    } else {
+        input.setAttribute('type', 'password');
+        visibilityToggle.innerHTML = 'visibility_off';
+    }
+    password = !password;
+
+});
 </script>
