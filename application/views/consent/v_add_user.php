@@ -1,3 +1,13 @@
+<!--
+    /*
+    * v_add_user
+    * Add User 
+    * @input -
+    * @output -
+    * @author Jaraspon Seallo
+    * @Create date : 2565-03-10
+    */
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,6 +68,8 @@ i {
     height: 300px;
     background-position: center;
 }
+
+
 </style>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -77,7 +89,7 @@ i {
                                     <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
                                         id="output" width="400" class="img-user" />
                                     <div class="profile-pic">
-                                   
+
                                         <label class="btn btn-outline-primary d-grid gap-2 mt-3" for="file">
                                             <span class="glyphicon glyphicon-camera"></span>
                                             <span>Change Image</span>
@@ -89,26 +101,26 @@ i {
 
 
                                 <div class="col-6">
-                                    <form>
+                                    <form id="submit" action="">
                                         <div class="form-group">
                                             <label class="form-control-label">Student ID</label>
-                                            <input class="form-control" type="text" id="student_id">
+                                            <input class="form-control" type="text" id="student_id" required>
                                         </div>
                                         <div class="form-group">
                                             <label class="form-control-label">Name</label>
-                                            <input class="form-control" type="text" id="name">
+                                            <input class="form-control" type="text" id="name" required>
                                         </div>
 
                                         <div class="form-group">
                                             <label for="example-email-input" class="form-control-label">Email</label>
-                                            <input class="form-control" type="email" id="email">
+                                            <input class="form-control" type="email" id="email" required>
                                         </div>
                                         <div class="form-group">
                                             <label for="example-password-input"
                                                 class="form-control-label">Password</label>
                                                 <div class=" show-password">
 
-                                                    <input class="form-control " type="password" value="password" id="password">
+                                                    <input class="form-control " type="password" value="password" id="password" required>
                                                     <i class="material-icons visibility">visibility_off</i>
                                                 </div>
                                         </div>
@@ -116,23 +128,28 @@ i {
 
                                         <div class="form-group">
                                             <label class="form-control-label">Cluster</label>
-                                            <input class="form-control" type="text" id="cluster">
+                                            <input class="form-control" type="text" id="cluster" required>
                                         </div>
 
                                         <label class="form-control-label">Role</label>
-                                        <div>
+                                        <div id="role">
 
-                                            <input type="radio" id="User" name="User">
+                                            <input type="radio" id="user" class="role" name="Role" value="user"  required>
                                             <label class="custom-control-label" for="customRadioInline1">User</label>
 
-                                            <input type="radio" id="Admin" name="Admin">
+                                            <input type="radio" id="admin" class="role" name="Role" value="admin"  required>
                                             <label class="custom-control-label" for="customRadioInline1">Admin</label>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary submit">Submit</button>
+
+
                                     </form>
                                 </div>
                             </div>
+
+
+
                             <div class="card-body px-0 pt-0 pb-2">
                             </div>
                         </div>
@@ -146,10 +163,88 @@ i {
 
 
 </body>
-
-</html>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
+
+
+// const btn_submit = document.querySelector('.submit');
+// const input_student_id = document.querySelector('#student_id');
+// const input_name = document.querySelector('#name');
+// const input_email = document.querySelector('#email');
+// const input_password = document.querySelector('#password');
+// const input_cluster = document.querySelector('#cluster');
+// const input_Roler = document.querySelector('#Role');
+
+$(document).ready(function(){
+    $('form').submit(function(e){
+        const input_student_id = $('#student_id').val()
+        const input_name = $('#name').val()
+        const input_email = $('#email').val()
+        const input_password = $('#password').val()
+        const input_cluster = $('#cluster').val()
+        const input_Roler =   $('input[name=Role]:checked', '#role').val()
+
+     console.log(input_student_id);
+     console.log(input_name);
+     console.log(input_email);
+     console.log(input_password);
+     console.log(input_cluster);
+     console.log(input_Roler);
+      
+
+        if(true){
+            Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Add User Success',
+                showConfirmButton: true,
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#66d432',
+                timer: 1500
+            })
+            $('#student_id').val("")
+            $('#name').val("")
+            $('#email').val("")
+            $('#password').val("")
+            $('#cluster').val("")
+            $('input[name=Role]').prop('checked', false);
+            // $('input[name=Role]', '#role').val("")
+        }else{
+
+        }
+
+        e.preventDefault();
+    });
+});
+
+
+// input_student_id.addEventListener('change', function(e) {
+//     console.log(e)
+// });
+
+// btn_submit.addEventListener('click', function(e) {
+//    e.def
+//     console.log( $('#student_id').val())
+//     Swal.fire({
+//         position: 'center',
+//         icon: 'success',
+//         title: 'Add User Success',
+//         showConfirmButton: true,
+//         confirmButtonText: 'OK',
+//         confirmButtonColor: '#66d432',
+//         timer: 1500
+//     })
+// //     Swal.fire(
+// //         title: 'Add User Success',
+// //         icon: 'success',
+// //         confirmButtonText: 'Yes, delete it!',
+// // )
+
+// });
+
+
+
 const visibilityToggle = document.querySelector('.visibility');
 
 const input = document.querySelector('.show-password input');
@@ -168,3 +263,5 @@ visibilityToggle.addEventListener('click', function() {
 
 });
 </script>
+
+</html>
