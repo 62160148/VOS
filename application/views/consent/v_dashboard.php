@@ -20,6 +20,11 @@
     margin-bottom: 0rem;
 }
 
+h4 
+{
+    margin-top: 1rem;
+}
+
 </style>
 <!-- End CSS -->
 
@@ -39,10 +44,13 @@
                 <h1>Report (ผลการโหวต)</h1>
             </head>
         </div>
+        <!-- End card-header -->
     </div>
-
+    <!-- End card -->
+    
     <div class="card-body">
         <div class="container-fluid py-4">
+            <!-- Start Card Data -->
             <div class="row">
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
@@ -149,8 +157,10 @@
                     </div>
                 </div>
             </div>
+            <!-- End Card Data -->
             <br>
 
+            <!-- Start Table List -->
             <div class="row">
                 <div class="card mb-4">
                     <div class="card-body px-2 pt-2 pb-2">
@@ -167,7 +177,9 @@
                                     </tr>
                                 </thead>
                                 <tr>
-                                <td>1</td>
+                                    <!-- # -->
+                                    <td>1</td>
+                                    <!-- Title -->
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
@@ -179,11 +191,15 @@
                                             </div>
                                         </div>
                                     </td>
+                                    <!-- Open -->
                                     <td>07/03/2565 13:00:00</td>
+                                    <!-- Close -->
                                     <td>07/03/2565 16:00:00</td>
+                                    <!-- Status -->
                                     <td class="align-middle text-center text-sm">
                                         <span class="badge badge-sm bg-gradient-danger">Close</span>
                                     </td>
+                                    <!-- Button Report -->
                                     <td class="align-middle text-center text-sm">
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -246,8 +262,11 @@
                     </div>
                 </div>
             </div>
+            <!-- End Table List -->
         </div>
+        <!-- End container-fluid py-4 -->
     </div>
+    <!-- End card-body -->
 </div>
 <!-- End HTML -->
 
@@ -256,14 +275,12 @@
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                
+            <div class="modal-body" align="center">
+                <div class="modal-title" id="ModalLabel" id="img">
+                    <!-- icon -->
+                    <img src=<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\download.png' ?> width="150" height="150">
+                    <h4><b>ยืนยันการดาวน์โหลด</b></h4>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">ยกเลิก</button>
