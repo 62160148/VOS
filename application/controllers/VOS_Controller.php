@@ -14,21 +14,12 @@ require_once(dirname(__FILE__) . "/MainController.php");
 class VOS_Controller extends MainController
 {
 
-	// /*
-	// * index
-	// * 
-	// * @input 
-	// * @output 
-	// * @author 	Kunanya Singmee
-	// * @Create Date 2564-7-10
-	// */
+	function index()
+	{
+		// $this->output('Main_index');
+		$this->output_login("auth/v_user_login");
+	}
 	// function index()
-	// {
-	// 	// $this->output('Main_index');
-	// 	$this->output_login("login/v_user_login");
-	// }
-	// // function index()
-
 
 }
 // 

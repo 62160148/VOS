@@ -17,7 +17,7 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         margin: 0;
-        adding: 0;
+        /* adding: 0; */
     }
 
     body {
@@ -228,32 +228,15 @@
     .form-field input:hover::placeholder {
         color: #d61e2d;
     }
-
-    #content {
-    position: relative;
-}
-#content img {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-}
 </style>
 <!-- End CSS -->
 
-<head>
-    <meta charset="utf-8">
-    <link href='https://fonts.googleapis.com/css?family=Chakra Petch' rel='stylesheet'>
-</head>
-
 <!-- Start HTML -->
-<!-- <div id="content">
-    <img src="../assests/template/argon-dashboard-master/assets/img/Logo_Team_6_v2.png">
-</div> -->
 <div class="login-card">
     <div class="login-card-content">
         <div class="header">
             <div class="logo">
-                <div><img src="../assests/template/argon-dashboard-master/assets/img/vote.png" width="150" height="150"></div>
+                <img src=<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\vote.png' ?> width="150" height="150">
             </div>
             <h2><span class="highlight">Vote Online System</span></h2>
         </div>
@@ -280,7 +263,7 @@
         <p class="mb-0 text-secondary">
             Copyright © <script>
                 document.write(new Date().getFullYear())
-            </script> VOS by Team 6
+            </script> VOS by <img src=<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\Logo_Team_6_v2.png' ?> width="35" height="35">| Team 6
         </p>
     </div>
 </div>
