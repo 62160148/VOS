@@ -21,14 +21,15 @@ class MainController extends CI_Controller
 		$this->load->view('includes/template/footer');
 	}
 
-	public function login()
+	public function output_login($view, $data=null)
 	{
-		$this->output('auth/v_user_login');
+		$this->load->view('includes/template/header');
+		// $this->load->view('includes/template/sidebar');
+		// $this->load->view('includes/template/topbar');
+		$this->load->view($view, $data);
+		$this->load->view('includes/template/javascript');
+		$this->load->view('includes/template/footer');
 	}
 
-	public function login2()
-	{
-		$this->output('auth/v_user_login2');
-	}
 
 }
