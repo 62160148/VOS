@@ -41,7 +41,7 @@ h4
     <div class="card">
         <div class="card-header">
             <head>
-                <h1>Report (ผลการโหวต)</h1>
+                <h1>Dashboard</h1>
             </head>
         </div>
         <!-- End card-header -->
@@ -52,112 +52,59 @@ h4
         <div class="container-fluid py-4">
             <!-- Start Card Data -->
             <div class="row">
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
+                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
+                    <div class="card" >
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Money</p>
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">All Event</p>
                                             <h5 class="font-weight-bolder">
-                                                $53,000
+                                                <?php
+                                                    $num_ev = 0;
+                                                    for($j=0; $j<count($arr_num); $j++)
+                                                    {
+                                                        $num_ev++;
+                                                    }
+                                                    echo $num_ev
+                                                ?>
                                             </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">+55%</span>
-                                                since yesterday
-                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
-                                        <i class="ni ni-money-coins text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/2132/2132729.png" width="80" height="80">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                <div class="col-xl-6 col-sm-6 mb-xl-0 mb-4">
                     <div class="card">
                         <div class="card-body p-3">
                             <div class="row">
                                 <div class="col-8">
                                     <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Today's Users</p>
+                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">All Member</p>
                                             <h5 class="font-weight-bolder">
-                                                2,300
+                                            <?php
+                                                    $num_mem = 0;
+                                                    for($j=0; $j<count($arr_per); $j++)
+                                                    {
+                                                        $num_mem++;
+                                                    }
+                                                    echo $num_mem
+                                                ?>
                                             </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">+3%</span>
-                                                since last week
-                                        </p>
                                     </div>
                                 </div>
                                 <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
-                                        <i class="ni ni-world text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">New Clients</p>
-                                            <h5 class="font-weight-bolder">
-                                                +3,462
-                                            </h5>
-                                        <p class="mb-0">
-                                            <span class="text-danger text-sm font-weight-bolder">-2%</span>
-                                                since last quarter
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
-                                        <i class="ni ni-paper-diploma text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-sm-6">
-                    <div class="card">
-                        <div class="card-body p-3">
-                            <div class="row">
-                                <div class="col-8">
-                                    <div class="numbers">
-                                        <p class="text-sm mb-0 text-uppercase font-weight-bold">Sales</p>
-                                            <h5 class="font-weight-bolder">
-                                                $103,430
-                                            </h5>
-                                        <p class="mb-0">
-                                            <span class="text-success text-sm font-weight-bolder">+5%</span> than
-                                                last month
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-4 text-end">
-                                    <div
-                                        class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
-                                        <i class="ni ni-cart text-lg opacity-10" aria-hidden="true"></i>
-                                    </div>
+                                    <img src="https://cdn-icons-png.flaticon.com/512/1256/1256650.png" width="80" height="80">
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- End Card Data -->
             <br>
 
             <!-- Start Table List -->
@@ -169,94 +116,54 @@ h4
                                 <thead>
                                     <tr>
                                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">#</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Title</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Open</th>
-                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Close</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ">Event Name</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Start Event</th>
+                                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">End Event</th>
                                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Status</th>
-                                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Report</th>
                                     </tr>
                                 </thead>
                                 <tr>
+                                    <?php
+                                        for($i=0; $i<count($arr_evg); $i++)
+                                        {
+                                    ?>        
+                                       
                                     <!-- # -->
-                                    <td>1</td>
+                                    <td><?php echo $i+1 ?></td>
                                     <!-- Title -->
                                     <td>
                                         <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img class="avatar avatar-sm me-3"
-                                                    src="<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\Powerpuff-Girls.jpg' ?>">
-                                            </div>
                                             <div class="d-flex flex-column justify-content-center">
-                                                <p class="text-xxl text-secondary mb-0">มกุล 0</p>
+                                                <p class="text-xxl text-secondary mb-0">
+                                                    <?php
+                                                        echo $arr_evg[$i]->evt_name
+                                                    ?>
+                                                </p>
                                             </div>
                                         </div>
                                     </td>
                                     <!-- Open -->
-                                    <td>07/03/2565 13:00:00</td>
+                                    <td>
+                                        <?php
+                                            echo $arr_evg[$i]->evt_start_date 
+                                        ?>
+                                    </td>
                                     <!-- Close -->
-                                    <td>07/03/2565 16:00:00</td>
+                                    <td>
+                                    <?php
+                                        echo $arr_evg[$i]->evt_end_date 
+                                    ?>
+                                    </td>
                                     <!-- Status -->
                                     <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-danger">Close</span>
-                                    </td>
-                                    <!-- Button Report -->
-                                    <td class="align-middle text-center text-sm">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Report
-                                        </button>
-                                    </td>
+                                        <span class="badge badge-sm bg-gradient-danger">
+                                            Close
+                                        </span>
+                                    </td>                                    
                                 </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img class="avatar avatar-sm me-3"
-                                                    src="<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\Powerpuff-Girls.jpg' ?>">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <p class="text-xxl text-secondary mb-0">มกุล 1</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>07/03/2565 13:00:00</td>
-                                    <td>07/03/2565 16:00:00</td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Open</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Report
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>
-                                        <div class="d-flex px-2 py-1">
-                                            <div>
-                                                <img class="avatar avatar-sm me-3"
-                                                    src="<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\Powerpuff-Girls.jpg' ?>">
-                                            </div>
-                                            <div class="d-flex flex-column justify-content-center">
-                                                <p class="text-xxl text-secondary mb-0">มกุล 2</p>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td>07/03/2565 13:00:00</td>
-                                    <td>07/03/2565 16:00:00</td>
-                                    <td class="align-middle text-center text-sm">
-                                        <span class="badge badge-sm bg-gradient-success">Open</span>
-                                    </td>
-                                    <td class="align-middle text-center text-sm">
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                        Report
-                                        </button>
-                                    </td>
-                                </tr>
+                            <?php
+                            }
+                            ?>
                             </table>
                         </div>
                     </div>
