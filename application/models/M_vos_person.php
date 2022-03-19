@@ -16,5 +16,11 @@ class M_vos_person extends Da_vos_person
         $query = $this->db->query($sql);
         return $query;
     }
-
+    public function get_amount_person()
+    {
+        $sql = "SELECT COUNT(per_id) AS numPerson
+                FROM vos_database.vos_person";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
 }

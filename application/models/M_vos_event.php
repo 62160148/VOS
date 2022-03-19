@@ -16,5 +16,11 @@ class M_vos_event extends Da_vos_event
         $query = $this->db->query($sql);
         return $query;
     }
-
+    public function get_amount_event()
+    {
+        $sql = "SELECT COUNT(evt_id) AS numEvent
+                FROM vos_database.vos_event";
+        $query = $this->db->query($sql)->result();
+        return $query;
+    }
 }
