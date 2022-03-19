@@ -66,10 +66,11 @@
                       </tr>
                     </thead>
                     <tbody>
-                      
+                    <?php
+                                            foreach($arr_user as $index => $row ){ ?>
                       <tr>
                         <td class="align-middle text-center text-sm">
-                          <p class="text-xs font-weight-bold mb-0">1</p>
+                          <p class="text-xs font-weight-bold mb-0"><?php echo ($index+1);?></p>
                         </td>
                         <td>
                           <div class="d-flex px-2 py-1">
@@ -78,78 +79,21 @@
 
                             </div>
                             <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">A Meow</h6>
+                              <h6 class="mb-0 text-sm"><?php echo $row->per_name.' '.$row->per_lastname;?></h6>
                             </div>
                           </div>
                         </td>
                         <td>
-                          <p class="text-xs font-weight-bold mb-0">meow63160XX@go.buu.ac.th</p>
+                          <p class="text-xs font-weight-bold mb-0"><?php echo $row->per_email;?></p>
                         </td>
                         <td class="align-middle text-center text-sm">
-                          <span class="badge badge-sm bg-gradient-success">Admin</span>
-                        </td>
-
-                        <td class="align-middle text-center">
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-link text-warning text-gradient px-3 mb-0">
-                            <i class="far fa-edit me-2"></i>Edit</button>
-                          <!-- <br> -->
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#ModalDeleteAssessor">
-                            <i class="far fa-trash-alt me-2"></i>Delete</button>
-                        </td>
-
-                      </tr>
-                      <tr>
-                        <td class="align-middle text-center text-sm">
-                          <p class="text-xs font-weight-bold mb-0">2</p>
-                        </td>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img class="avatar avatar-sm me-3" src="<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\Cute_cat.jpg' ?>">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">B Meow</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">meow63160XX@go.buu.ac.th</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
-                          <span class="badge badge-sm bg-gradient-success">Admin</span>
-                        </td>
-                        <td class="align-middle text-center">
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-link text-warning text-gradient px-3 mb-0">
-                            <i class="far fa-edit me-2"></i>Edit</button>
-                          <!-- <br> -->
-                          <!-- Button trigger modal -->
-                          <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#ModalDeleteAssessor">
-                            <i class="far fa-trash-alt me-2"></i>Delete</button>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="align-middle text-center text-sm">
-                          <p class="text-xs font-weight-bold mb-0">3</p>
-                        </td>
-                        <td>
-                          <div class="d-flex px-2 py-1">
-                            <div>
-                              <img class="avatar avatar-sm me-3" src="<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\Cute_cat.jpg' ?>">
-                            </div>
-                            <div class="d-flex flex-column justify-content-center">
-                              <h6 class="mb-0 text-sm">C Meow</h6>
-                            </div>
-                          </div>
-                        </td>
-                        <td>
-                          <p class="text-xs font-weight-bold mb-0">meow63160XX@go.buu.ac.th</p>
-                        </td>
-                        <td class="align-middle text-center text-sm">
+                        <?php if($arr_user[$index]->user_role == '1'){ ?>
                           <span class="badge badge-sm bg-gradient-info">User</span>
+                          <?php }else{ ?>
+                            <span class="badge badge-sm bg-gradient-success">Admin</span>
+                            <?php } ?>
                         </td>
+
                         <td class="align-middle text-center">
                           <!-- Button trigger modal -->
                           <button type="button" class="btn btn-link text-warning text-gradient px-3 mb-0">
@@ -159,7 +103,9 @@
                           <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#ModalDeleteAssessor">
                             <i class="far fa-trash-alt me-2"></i>Delete</button>
                         </td>
+
                       </tr>
+                      <?php } ?>
                     </tbody>
                   </table>
                 </div>

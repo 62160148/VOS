@@ -29,14 +29,13 @@ class User_Management extends MainController
     */
     public function show_user_management()
     {
-        // $this->load->model('M_pef_group_assessor', 'mpef');
-        // $this->load->model('M_pef_assessor_position', 'map');
-        // $data['arr_group'] = $this->mpef->get_group_assessor_all()->result();
+        $this->load->model('M_vos_user_login', 'muser');
+        $data['arr_user'] = $this->muser->get_user_list()->result();
         // $data['arr_position'] = $this->map->get_position_all()->result();
         // print_r($data['arr_position']);
         // print_r($data);
         // $this->output('consent/v_assessor_management', $data);
-        $this->output('consent/v_user_management');
+        $this->output('consent/v_user_management', $data);
         
     }
     public function show_add_user()
