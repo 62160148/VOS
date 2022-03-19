@@ -55,4 +55,23 @@ class M_vos_user_login extends vos_model
         return $query;
     } //end get_user_list
 
+    /*
+    * get_user_list
+    * get_user_list in database
+    * @input -
+    * @output user list
+    * @author Apinya Phadungkit
+    * @Create Date 2564-03-19
+    */
+    function check_user_role()
+    {
+        $sql = " SELECT *
+        FROM vos_database.vos_user_login AS ulog 
+        INNER JOIN vos_database.vos_person AS per
+        ON ulog.user_id = per.per_id
+        WHERE ulog.user_role = ?";
+        $query = $this->db->query($sql,array($this->user_role));
+        return $query;
+    } //end get_user_list
+
 }//end class M_vos_user_login

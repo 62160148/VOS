@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="utf-8" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- sorting -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --> 
   <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" />
 </head>
@@ -59,8 +60,8 @@
                               Role
                             </a>
                             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                              <li><a class="dropdown-item" href="#">User</a></li>
-                              <li><a class="dropdown-item" href="#">Admin</a></li>
+                              <li><a class="dropdown-item" href="<?php echo site_url() . 'User_Management/user_role_user' ; ?>">User</a></li>
+                              <li><a class="dropdown-item" href="<?php echo site_url() . 'User_Management/user_role_admin' ; ?>">Admin</a></li>
                             </ul>
                           </div>
                         </th>
@@ -68,8 +69,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
-                                            foreach($arr_user as $index => $row ){ ?>
+                    <?php foreach($arr_user as $index => $row ){ ?>
                       <tr>
                         <td class="align-middle text-center text-sm">
                           <p class="text-xs font-weight-bold mb-0"><?php echo ($index+1);?></p>
@@ -78,7 +78,6 @@
                           <div class="d-flex px-2 py-1">
                             <div>
                               <img class="avatar avatar-sm me-3" src="<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\Cute_cat.jpg' ?>">
-
                             </div>
                             <div class="d-flex flex-column justify-content-center">
                               <h6 class="mb-0 text-sm"><?php echo $row->per_name.' '.$row->per_lastname;?></h6>
@@ -97,11 +96,11 @@
                         </td>
 
                         <td class="align-middle text-center">
-                          <!-- Button trigger modal -->
+                          <!-- Button Edit -->
                           <button type="button" class="btn btn-link text-warning text-gradient px-3 mb-0">
                             <i class="far fa-edit me-2"></i>Edit</button>
                           <!-- <br> -->
-                          <!-- Button trigger modal -->
+                          <!-- Button Delete -->
                           <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#ModalDeleteAssessor">
                             <i class="far fa-trash-alt me-2"></i>Delete</button>
                         </td>
@@ -118,5 +117,4 @@
      
   </main>
 </body>
-
 </html>

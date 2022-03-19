@@ -37,7 +37,47 @@ class User_Management extends MainController
         // $this->output('consent/v_assessor_management', $data);
         $this->output('consent/v_user_management', $data);
         
-    }
+    }//end show_user_management
+
+    /*
+	* show_user_role_user
+	* display view user_role_user list management
+	* @input  -
+	* @output  user_role_user list
+	* @author  Apinya Phadungkit
+	* @Create  Date 2565-03-19
+    * @Update  Date 2565-03-19
+    */
+    public function user_role_user()
+    {
+        $this->load->model('M_vos_user_login', 'ruser');
+        $this->ruser->user_role = 1;
+        $data['arr_user'] = $this->ruser->check_user_role()->result();
+        // print_r($data);
+        $this->output('consent/v_user_management', $data);
+  
+    }//end user_role_user
+
+    /*
+	* show_user_role_admin
+	* display view user_role_admin list management
+	* @input  -
+	* @output  user_role_admin list
+	* @author  Apinya Phadungkit
+	* @Create  Date 2565-03-19
+    * @Update  Date 2565-03-19
+    */
+    public function user_role_admin()
+    {
+        $this->load->model('M_vos_user_login', 'radmin');
+        $this->radmin->user_role = 2;
+        $data['arr_user'] = $this->radmin->check_user_role()->result();
+        // print_r($data);
+        $this->output('consent/v_user_management', $data);     
+    }//end user_role_admin
+
+
+
     public function show_add_user()
     {
         $this->output('consent/v_add_user');
