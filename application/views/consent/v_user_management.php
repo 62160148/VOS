@@ -31,10 +31,12 @@
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                   <div class="ms-md-auto pe-md-3 d-flex align-items-center">
                     <div class="input-group">
-                      <!-- Button trigger modal -->
-                      <button type="button" class="btn bg-gradient-info btn-block mb-3" data-bs-toggle="modal" data-bs-target="#ModalAddGroup">
+                      <!-- Button  -->
+                      <a href=" <?php echo site_url() . 'User_Management/show_add_user' ; ?>">
+                      <button type="button" class="btn bg-gradient-info btn-block mb-3">
                         <i class="fas fa-plus"></i>&nbsp;&nbsp;Add User
                       </button>
+                      </a>
                     </div>
                   </div>
                 </div>
