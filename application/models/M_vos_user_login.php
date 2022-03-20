@@ -74,4 +74,21 @@ class M_vos_user_login extends vos_model
         return $query;
     } //end get_user_list
 
+    function insert_person()
+    {
+        $sql = "INSERT INTO vos_database.vos_person (per_name, per_lastname, per_email,  per_image, per_point, per_cls_id)
+        VALUES (?,?,?,?,?,?)";
+        $this->db->query($sql, array($this->per_name,$this->per_lastname, $this->per_email,$this->per_image,$this->per_point,$this->per_cls_id));
+        return $this->db->insert_id();
+    }
+    function insert_user_login()
+    {
+        $sql = "INSERT INTO vos_database.vos_user_login (user_name, user_password,  user_role, user_per_id)
+        VALUES (?,?,?,?)";
+        $this->db->query($sql, array($this->user_name,$this->user_password, $this->user_role,$this->user_per_id));
+        return $this->db->insert_id();
+
+    }
+
+    
 }//end class M_vos_user_login

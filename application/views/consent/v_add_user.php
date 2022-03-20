@@ -1,7 +1,7 @@
 <!--
     /*
     * v_add_user
-    * Add User 
+    * Add User
     * @input -
     * @output -
     * @author Jaraspon Seallo
@@ -46,30 +46,28 @@ i {
     position: relative;
 }
 
-.show-password i{
+.show-password i {
     user-select: none;
     top: 10px;
     right: 10px;
     position: absolute;
 }
 
-.m-65{
+.m-65 {
     padding: 15px;
     margin-right: 65px;
 }
 
-.d-n{
+.d-n {
     display: none;
 }
 
-.img-user{
+.img-user {
     border-radius: 184px;
     width: 300px;
     height: 300px;
     background-position: center;
 }
-
-
 </style>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -86,15 +84,22 @@ i {
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-auto m-65">
-                                    <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+                                <div id="uploaded_image">
+           </div>
+                                    <!-- <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
+                                        id="output" width="400" class="img-user" /> -->
+                                    <img src="http://localhost/VOS/assests/image/default-profile.jpg"
                                         id="output" width="400" class="img-user" />
                                     <div class="profile-pic">
+                                        <form method="post" id="upload_image" align="center"
+                                            enctype="multipart/form-data">
 
-                                        <label class="btn btn-outline-primary d-grid gap-2 mt-3" for="file">
-                                            <span class="glyphicon glyphicon-camera"></span>
-                                            <span>Change Image</span>
-                                        </label>
-                                        <input id="file" type="file" onchange="loadFile(event)" class="d-n"/>
+                                            <label class="btn btn-outline-primary d-grid gap-2 mt-3" for="image_file">
+                                                <span class="glyphicon glyphicon-camera"></span>
+                                                <span>Change Image</span>
+                                            </label>
+                                            <input id="image_file" type="file" class="d-n" name="image_file"/>
+                                        </form>
 
                                     </div>
                                 </div>
@@ -107,8 +112,12 @@ i {
                                             <input class="form-control" type="text" id="student_id" required>
                                         </div>
                                         <div class="form-group">
-                                            <label class="form-control-label">Name</label>
-                                            <input class="form-control" type="text" id="name" required>
+                                            <label class="form-control-label">First Name</label>
+                                            <input class="form-control" type="text" id="firstname" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="form-control-label">Last Name</label>
+                                            <input class="form-control" type="text" id="lastname" required>
                                         </div>
 
                                         <div class="form-group">
@@ -118,11 +127,12 @@ i {
                                         <div class="form-group">
                                             <label for="example-password-input"
                                                 class="form-control-label">Password</label>
-                                                <div class=" show-password">
+                                            <div class=" show-password">
 
-                                                    <input class="form-control " type="password" value="password" id="password" required>
-                                                    <i class="material-icons visibility">visibility_off</i>
-                                                </div>
+                                                <input class="form-control " type="password" value="password"
+                                                    id="password" required>
+                                                <i class="material-icons visibility">visibility_off</i>
+                                            </div>
                                         </div>
 
 
@@ -131,13 +141,20 @@ i {
                                             <input class="form-control" type="text" id="cluster" required>
                                         </div>
 
+                                        <div class="form-group">
+                                            <label class="form-control-label">Score</label>
+                                            <input class="form-control" type="text" id="score" required>
+                                        </div>
+
                                         <label class="form-control-label">Role</label>
                                         <div id="role">
 
-                                            <input type="radio" id="user" class="role" name="Role" value="user"  required>
+                                            <input type="radio" id="user" class="role" name="Role" value="1"
+                                                required>
                                             <label class="custom-control-label" for="customRadioInline1">User</label>
 
-                                            <input type="radio" id="admin" class="role" name="Role" value="admin"  required>
+                                            <input type="radio" id="admin" class="role" name="Role" value="2"
+                                                required>
                                             <label class="custom-control-label" for="customRadioInline1">Admin</label>
                                         </div>
 
@@ -166,8 +183,6 @@ i {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-
-
 // const btn_submit = document.querySelector('.submit');
 // const input_student_id = document.querySelector('#student_id');
 // const input_name = document.querySelector('#name');
@@ -176,72 +191,126 @@ i {
 // const input_cluster = document.querySelector('#cluster');
 // const input_Roler = document.querySelector('#Role');
 
-$(document).ready(function(){
-    $('form').submit(function(e){
+
+
+
+$(document).ready(function() {
+let url_image = ''
+    $('#upload_image').on('change', function(e){
+           e.preventDefault();
+           if($('#image_file').val() == '')
+           {
+                alert("Please Select the File");
+           }
+           else
+           {
+                $.ajax({
+                     url:"/VOS/User_Management/upload_image",
+                     //base_url() = http://localhost/tutorial/codeigniter
+                     method:"POST",
+                     data:new FormData(this),
+                     contentType: false,
+                     cache: false,
+                     processData:false,
+                     success:function(data)
+                     {
+                       let res = JSON.parse(data)
+                         console.log('data :>> ',  '<?php echo base_url(); ?>');
+                          $('#output').attr("src", '<?php echo base_url(); ?>'+ res.url);
+                          url_image = res.url
+                     }
+                });
+           }
+      });
+
+
+
+
+
+    $('form').submit(function(e) {
+        e.preventDefault();
+
         const input_student_id = $('#student_id').val()
-        const input_name = $('#name').val()
+        const input_firstname = $('#firstname').val()
+        const input_lastname = $('#lastname').val()
         const input_email = $('#email').val()
         const input_password = $('#password').val()
         const input_cluster = $('#cluster').val()
-        const input_Roler =   $('input[name=Role]:checked', '#role').val()
+        const input_score = $('#score').val()
+        const input_roler = $('input[name=Role]:checked', '#role').val()
+       
+        $.ajax({
+            url: "/VOS/User_Management/add_user",
+            type: "post",
+            data: {
+                input_student_id,
+                input_firstname,
+                input_lastname,
+                input_email,
+                input_password,
+                input_cluster,
+                input_score,
+                input_roler,
+                input_image : url_image
+            },
+            success: function(response) {
+                let res = JSON.parse(response)
+                console.log('response :>> ', response);
+                if (res?.status) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Add User Success',
+                        showConfirmButton: true,
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#66d432',
+                        timer: 1500
+                    })
+                    $('#student_id').val("")
+                    $('#firstname').val("")
+                    $('#lastname').val("")
+                    $('#email').val("")
+                    $('#password').val("")
+                    $('#cluster').val("")
+                    $('#score').val("")
+                    $('input[name=Role]').prop('checked', false);
+                   
+                    $('#output').attr("src", '<?php echo base_url(); ?>'+"assests/image/default-profile.jpg");
+                    // $('input[name=Role]', '#role').val("")
+                } else {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Add User Error',
+                        showConfirmButton: false,
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#66d432',
+                        timer: 1500
+                    })
+                }
 
-     console.log(input_student_id);
-     console.log(input_name);
-     console.log(input_email);
-     console.log(input_password);
-     console.log(input_cluster);
-     console.log(input_Roler);
-      
 
-        if(true){
-            Swal.fire({
-                position: 'center',
-                icon: 'success',
-                title: 'Add User Success',
-                showConfirmButton: true,
-                confirmButtonText: 'OK',
-                confirmButtonColor: '#66d432',
-                timer: 1500
-            })
-            $('#student_id').val("")
-            $('#name').val("")
-            $('#email').val("")
-            $('#password').val("")
-            $('#cluster').val("")
-            $('input[name=Role]').prop('checked', false);
-            // $('input[name=Role]', '#role').val("")
-        }else{
+                // You will get response from your PHP page (what you echo or print)
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                Swal.fire({
+                        position: 'center',
+                        icon: 'error',
+                        title: 'Add User Error',
+                        showConfirmButton: false,
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#66d432',
+                        timer: 1500
+                    })
+                console.log(textStatus, errorThrown);
+            }
+        });
 
-        }
 
-        e.preventDefault();
+
     });
 });
 
-
-// input_student_id.addEventListener('change', function(e) {
-//     console.log(e)
-// });
-
-// btn_submit.addEventListener('click', function(e) {
-//    e.def
-//     console.log( $('#student_id').val())
-//     Swal.fire({
-//         position: 'center',
-//         icon: 'success',
-//         title: 'Add User Success',
-//         showConfirmButton: true,
-//         confirmButtonText: 'OK',
-//         confirmButtonColor: '#66d432',
-//         timer: 1500
-//     })
-// //     Swal.fire(
-// //         title: 'Add User Success',
-// //         icon: 'success',
-// //         confirmButtonText: 'Yes, delete it!',
-// // )
-
-// });
 
 
 
