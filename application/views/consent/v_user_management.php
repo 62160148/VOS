@@ -77,8 +77,8 @@
                         <td>
                           <div class="d-flex px-2 py-1">
                             <div>
-                              <!-- <img class="avatar avatar-sm me-3" src="<?php echo base_url() . 'assests\template\argon-dashboard-master\assets\img\Cute_cat.jpg' ?>"> -->
-                              <img class="avatar avatar-sm me-3" src="<?php echo base_url() . $row->per_image; ?>">
+                              <!-- <img class="avatar avatar-sm me-3" src=""> -->
+                              <img class="avatar avatar-sm me-3" src="<?php echo base_url() . $row->per_image ; ?>">
                             </div>
                             <div class="d-flex flex-column justify-content-center">
                               <h6 class="mb-0 text-sm"><?php echo $row->per_name.' '.$row->per_lastname;?></h6>
