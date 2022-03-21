@@ -123,6 +123,7 @@ class User_Management extends MainController
                         "status" => true,
                         "mess" => "",
                         "user_id" => $user_id,
+                        "image"=>$input_image
                     ];
                 } else {
                     // delete_person
@@ -167,6 +168,7 @@ class User_Management extends MainController
                 echo $this->upload->display_errors();
             } else {
                 $data = $this->upload->data();
+            //  echo $data;
                 $image = [
                     "url" => 'assests/image/user/' . $data["file_name"],
                 ];

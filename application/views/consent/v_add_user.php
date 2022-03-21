@@ -68,19 +68,23 @@ i {
     height: 300px;
     background-position: center;
 }
-.card-header{
+
+.card-header {
     user-select: none;
 }
-#role{
+
+#role {
     display: flex;
     align-items: center;
 }
-.input-role{
+
+.input-role {
     margin: 0;
     margin-right: 20px;
     margin-left: 7px;
 }
-.submit{
+
+.submit {
     padding: 12px 80px;
 }
 </style>
@@ -99,12 +103,12 @@ i {
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-auto m-65">
-                                <div id="uploaded_image">
-           </div>
+                                    <div id="uploaded_image">
+                                    </div>
                                     <!-- <img src="https://cdn.pixabay.com/photo/2017/08/06/21/01/louvre-2596278_960_720.jpg"
                                         id="output" width="400" class="img-user" /> -->
-                                    <img src="http://localhost/VOS/assests/image/default-profile.jpg"
-                                        id="output" width="400" class="img-user" />
+                                    <img src="http://localhost/VOS/assests/image/default-profile.jpg" id="output"
+                                        width="400" class="img-user" />
                                     <div class="profile-pic">
                                         <form method="post" id="upload_image" align="center"
                                             enctype="multipart/form-data">
@@ -113,7 +117,7 @@ i {
                                                 <span class="glyphicon glyphicon-camera"></span>
                                                 <span>Change Image</span>
                                             </label>
-                                            <input id="image_file" type="file" class="d-n" name="image_file"/>
+                                            <input id="image_file" type="file" class="d-n" name="image_file" />
                                         </form>
 
                                     </div>
@@ -164,12 +168,10 @@ i {
                                         <label class="form-control-label">Role</label>
                                         <div id="role">
 
-                                            <input type="radio" id="user" class="role" name="Role" value="1"
-                                                required>
+                                            <input type="radio" id="user" class="role" name="Role" value="1" required>
                                             <label class="custom-control-label input-role " for="user">User</label>
 
-                                            <input type="radio" id="admin" class="role" name="Role" value="2"
-                                                required>
+                                            <input type="radio" id="admin" class="role" name="Role" value="2" required>
                                             <label class="custom-control-label  input-role" for="admin">Admin</label>
                                         </div>
 
@@ -210,33 +212,30 @@ i {
 
 
 $(document).ready(function() {
-let url_image = ''
-    $('#upload_image').on('change', function(e){
-           e.preventDefault();
-           if($('#image_file').val() == '')
-           {
-                alert("Please Select the File");
-           }
-           else
-           {
-                $.ajax({
-                     url:"/VOS/User_Management/upload_image",
-                     //base_url() = http://localhost/tutorial/codeigniter
-                     method:"POST",
-                     data:new FormData(this),
-                     contentType: false,
-                     cache: false,
-                     processData:false,
-                     success:function(data)
-                     {
-                       let res = JSON.parse(data)
-                         console.log('data :>> ',  '<?php echo base_url(); ?>');
-                          $('#output').attr("src", '<?php echo base_url(); ?>'+ res.url);
-                          url_image = res.url
-                     }
-                });
-           }
-      });
+    let url_image = ''
+    $('#upload_image').on('change', function(e) {
+        e.preventDefault();
+        if ($('#image_file').val() == '') {
+            alert("Please Select the File");
+        } else {
+            $.ajax({
+                url: "/VOS/User_Management/upload_image",
+                //base_url() = http://localhost/tutorial/codeigniter
+                method: "POST",
+                data: new FormData(this),
+                contentType: false,
+                cache: false,
+                processData: false,
+                success: function(data) {
+                    let res = JSON.parse(data)
+                    console.log('data :>> ', '<?php echo base_url(); ?>');
+                    $('#output').attr("src", '<?php echo base_url(); ?>' + res.url);
+                    url_image = res.url
+                    console.log('url_image :>> ', url_image);
+                }
+            });
+        }
+    });
 
 
 
@@ -253,7 +252,7 @@ let url_image = ''
         const input_cluster = $('#cluster').val()
         const input_score = $('#score').val()
         const input_roler = $('input[name=Role]:checked', '#role').val()
-       
+
         $.ajax({
             url: "/VOS/User_Management/add_user",
             type: "post",
@@ -266,7 +265,7 @@ let url_image = ''
                 input_cluster,
                 input_score,
                 input_roler,
-                input_image : url_image
+                input_image: url_image
             },
             success: function(response) {
                 let res = JSON.parse(response)
@@ -279,7 +278,11 @@ let url_image = ''
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#66d432',
-                        timer: 5000
+
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.replace('/VOS/User_Management/show_user_management')
+                        }
                     })
                     $('#student_id').val("")
                     $('#firstname').val("")
@@ -289,8 +292,10 @@ let url_image = ''
                     $('#cluster').val("")
                     $('#score').val("")
                     $('input[name=Role]').prop('checked', false);
-                   
-                    $('#output').attr("src", '<?php echo base_url(); ?>'+"assests/image/default-profile.jpg");
+
+                    $('#output').attr("src", '<?php echo base_url(); ?>' +
+                        "assests/image/default-profile.jpg");
+                  
                     // $('input[name=Role]', '#role').val("")
                 } else {
                     Swal.fire({
@@ -310,14 +315,14 @@ let url_image = ''
             },
             error: function(jqXHR, textStatus, errorThrown) {
                 Swal.fire({
-                        position: 'center',
-                        icon: 'error',
-                        title: 'Add User Error',
-                        showConfirmButton: false,
-                        confirmButtonText: 'OK',
-                        confirmButtonColor: '#66d432',
-                        timer: 1500
-                    })
+                    position: 'center',
+                    icon: 'error',
+                    title: 'Add User Error',
+                    showConfirmButton: false,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#66d432',
+                    timer: 1500
+                })
                 console.log(textStatus, errorThrown);
             }
         });
