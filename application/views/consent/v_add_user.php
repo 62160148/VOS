@@ -68,6 +68,21 @@ i {
     height: 300px;
     background-position: center;
 }
+.card-header{
+    user-select: none;
+}
+#role{
+    display: flex;
+    align-items: center;
+}
+.input-role{
+    margin: 0;
+    margin-right: 20px;
+    margin-left: 7px;
+}
+.submit{
+    padding: 12px 80px;
+}
 </style>
 
 <body class="g-sidenav-show   bg-gray-100">
@@ -151,14 +166,14 @@ i {
 
                                             <input type="radio" id="user" class="role" name="Role" value="1"
                                                 required>
-                                            <label class="custom-control-label" for="customRadioInline1">User</label>
+                                            <label class="custom-control-label input-role " for="user">User</label>
 
                                             <input type="radio" id="admin" class="role" name="Role" value="2"
                                                 required>
-                                            <label class="custom-control-label" for="customRadioInline1">Admin</label>
+                                            <label class="custom-control-label  input-role" for="admin">Admin</label>
                                         </div>
 
-                                        <button type="submit" class="btn btn-primary submit">Submit</button>
+                                        <button type="submit" class="btn btn-primary submit mt-4  ">Submit</button>
 
 
                                     </form>
@@ -264,7 +279,7 @@ let url_image = ''
                         showConfirmButton: true,
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#66d432',
-                        timer: 1500
+                        timer: 5000
                     })
                     $('#student_id').val("")
                     $('#firstname').val("")
@@ -282,10 +297,11 @@ let url_image = ''
                         position: 'center',
                         icon: 'error',
                         title: 'Add User Error',
+                        text: res?.mess,
                         showConfirmButton: false,
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#66d432',
-                        timer: 1500
+                        timer: 5000
                     })
                 }
 

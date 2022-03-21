@@ -95,36 +95,66 @@ class User_Management extends MainController
         $input_image = $this->input->post('input_image');
 
         $this->load->model('M_vos_user_login', 'muser');
+        $this->load->model('Da_vos_user_login', 'dauser');
 
         //insert DB person
-        $this->muser->per_name = $input_firstname;
-        $this->muser->per_lastname = $input_lastname;
-        $this->muser->per_email = $input_email;
-        $this->muser->per_image = $input_image == "" ? "" : $input_image;
-        $this->muser->per_point = $input_score;
-        $this->muser->per_cls_id = $input_cluster;
-        $per_id = $this->muser->insert_person();
+        $this->dauser->per_name = $input_firstname;
+        $this->dauser->per_lastname = $input_lastname;
+        $this->dauser->per_email = $input_email;
+        $this->dauser->per_image = $input_image == "" ? "" : $input_image;
+        $this->dauser->per_point = $input_score;
+        $this->dauser->per_cls_id = $input_cluster;
+        $per_id = $this->dauser->insert_person();
 
         if ($per_id > 0) {
-            //insert DB user login
-            $this->muser->user_name = $input_student_id;
-            $this->muser->user_password = $input_password;
-            $this->muser->user_role = $input_roler;
-            $this->muser->user_per_id = $per_id;
-            $user_id = $this->muser->insert_user_login();
-            $data = [
-                "status" => true,
-                "user_id" => $user_id,
-            ];
+            $this->muser->username = $input_student_id;
+            $data['username'] = $this->muser->check_user_name()->result();
+
+            if (count($data['username']) == 0) {
+                //insert DB user login
+                $this->dauser->user_name = $input_student_id;
+                $this->dauser->user_password = $input_password;
+                $this->dauser->user_role = $input_roler;
+                $this->dauser->user_per_id = $per_id;
+                $user_id = $this->dauser->insert_user_login();
+
+                if ($user_id) {
+                    $data = [
+                        "status" => true,
+                        "mess" => "",
+                        "user_id" => $user_id,
+                    ];
+                } else {
+                    // delete_person
+                    $this->dauser->per_id = $per_id;
+                    $this->dauser->delete_person();
+                    $data = [
+                        "status" => false,
+                        "mess" => "Failed to add new user.",
+                        "user_id" => $user_id,
+                    ];
+                }
+            } else {
+                // delete_person
+                $this->dauser->per_id = $per_id;
+                $this->dauser->delete_person();
+                $data = [
+                    "status" => false,
+                    "mess" => "This user Student ID already exists.",
+                    "user_id" => "",
+                ];
+            }
+
         } else {
             $data = [
                 "status" => false,
+                "mess" => "Failed to add new user.",
                 "user_id" => "",
             ];
         }
 
         echo json_encode($data);
-        redirect('consent/v_user_management');
+        // redirect('consent/v_user_management');
 
     }
     public function upload_image()
