@@ -124,6 +124,7 @@ class User_Management extends MainController
         }
 
         echo json_encode($data);
+        redirect('consent/v_user_management');
 
     }
     public function upload_image()
