@@ -56,6 +56,25 @@ class M_vos_user_login extends vos_model
     } //end get_user_list
 
     /*
+    * get_user_edit
+    * get_user_edit in database
+    * @input -
+    * @output user edit
+    * @author Apinya Phadungkit
+    * @Create Date 2564-03-21
+    */
+    function get_user_edit($id)
+    {
+        $sql = " SELECT *
+        FROM vos_database.vos_user_login AS ulog 
+        INNER JOIN vos_database.vos_person AS per
+        ON ulog.user_per_id = per.per_id
+        WHERE ulog.user_per_id = $id";
+        $query = $this->db->query($sql);
+        return $query;
+    } //end get_user_edit
+
+    /*
     * get_user_list
     * get_user_list in database
     * @input -

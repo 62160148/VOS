@@ -76,6 +76,28 @@ class User_Management extends MainController
         $this->output('consent/v_user_management', $data);
     } //end user_role_admin
 
+    /*
+    * edit_user
+    * Show page request form detail
+    * @input  id   
+    * @output edit_user
+    * @author Apinya Phadungkit
+    * @Create  Date 2565-03-21
+    * @Update  Date 2565-03-21
+    */
+    function edit_user($id)
+	{
+        $this->load->model('M_vos_user_login', 'muser');
+        $data['arr_user'] = $this->muser->get_user_edit($id)->row();
+
+
+        // $data['arr_req'] = $this->mreq->get_by_id($id)->row();
+        // $data['arr_emp'] = $this->mreq->get_all()->row();
+        // $data['arr_user'] = $this->mreq->get_history_user($id)->row();
+        $this->output('consent/v_edit_user',$data);
+	} //edit_user แก้ไขรายละเอียดของผู้ใช้งาน
+
+
     public function show_add_user()
     {
         $this->output('consent/v_add_user');
