@@ -4,7 +4,7 @@
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="" target="_blank">
-        <img src="../assests/template/argon-dashboard-master/assets/img/Logo_Team_6_v2.png" class="navbar-brand-img h-100">
+        <img src="<?php echo base_url() ?>/assests/template/argon-dashboard-master/assets/img/Logo_Team_6_v2.png" class="navbar-brand-img h-100">
         <span class="ms-1 font-weight-bold">Vote Online System</span>
       </a>
     </div>
@@ -31,7 +31,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="../User_Management/show_user_management">
+          <a class="nav-link " href="<?php echo base_url() ?>/User_Management/show_user_management">
             <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
               <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
             </div>
