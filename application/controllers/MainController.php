@@ -5,12 +5,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class MainController extends CI_Controller
 {
 
-	public function test()
-	{
-		// $this->load->view('consent/v_test');
-		$this->output('consent/v_test');
-	}
-
 	public function output($view, $data=null)
 	{
 		$this->load->view('includes/template/header');
@@ -30,6 +24,5 @@ class MainController extends CI_Controller
 		$this->load->view('includes/template/javascript');
 		$this->load->view('includes/template/footer');
 	}
-
 
 }

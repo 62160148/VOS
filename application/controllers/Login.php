@@ -94,7 +94,7 @@ class Login extends MainController
     { // check role
         if (!empty($this->session->userdata('UsPer_ID'))) {
             if ($_SESSION['Usrole'] == 1) {
-                redirect('VOS_Controller/event_list', 'refresh');
+                redirect('Vote/event_list', 'refresh');
             } else if ($_SESSION['Usrole'] == 2) {
                 redirect('Report/show_dashboard', 'refresh');
             }
