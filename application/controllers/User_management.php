@@ -67,6 +67,7 @@ class User_Management extends MainController
      * @Create  Date 2565-03-19
      * @Update  Date 2565-03-19
      */
+	
     public function user_role_admin()
     {
         $this->load->model('M_vos_user_login', 'radmin');
@@ -85,12 +86,11 @@ class User_Management extends MainController
     * @Create  Date 2565-03-21
     * @Update  Date 2565-03-21
     */
+	
     function edit_user($id)
 	{
         $this->load->model('M_vos_user_login', 'muser');
-        $data['arr_user'] = $this->muser->get_user_edit($id)->row();
-
-
+		$data['arr_user'] = $this->muser->get_user_edit($id)->row();
         // $data['arr_req'] = $this->mreq->get_by_id($id)->row();
         // $data['arr_emp'] = $this->mreq->get_all()->row();
         // $data['arr_user'] = $this->mreq->get_history_user($id)->row();
