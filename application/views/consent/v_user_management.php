@@ -104,7 +104,7 @@
                            </a>
                           <!-- <br> -->
                           <!-- Button Delete -->
-                          <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#ModalDeleteAssessor">
+                          <button type="button" class="btn btn-link text-danger text-gradient px-3 mb-0" data-bs-toggle="modal" data-bs-target="#ModalDeleteUser">
                             <i class="far fa-trash-alt me-2"></i>Delete</button>
                         </td>
 
@@ -121,3 +121,35 @@
   </main>
 </body>
 </html>
+
+
+
+<!-- Modal Delete User-->
+<div class="modal fade" id="ModalDeleteUser" tabindex="-1" role="dialog" aria-labelledby="ModalDeleteUserTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="col-12 text-end">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+
+
+            <div class="modal-body">
+                <div class="py-3 text-center">
+                    <div>
+                        <i class="fas fa-exclamation-triangle fa-8x" style="color:#FBD418"></i>
+                    </div>
+                    <h4 class="text-gradient text-danger mt-4">Confirm Delete User?</h4>
+                    <!-- <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn bg-gradient-danger" data-bs-dismiss="modal">Cancel</button>
+                <a href="<?php echo site_url() . 'User_Management/delete_user/' . $row->user_per_id; ?>">
+                  <button type="button" class="btn bg-gradient-success">Confirm</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
