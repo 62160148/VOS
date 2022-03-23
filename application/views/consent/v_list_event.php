@@ -38,7 +38,7 @@
         data-scroll="false">
         <div class="container-fluid py-1 px-3">
             <nav aria-label="breadcrumb">
-                <h6 class="font-weight-bolder text-white mb-0">Dashboard</h6>
+                <h3 class="font-weight-bolder text-white mb-0">Dashboard</h3>
             </nav>
             <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                 <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -50,7 +50,7 @@
                     <li class="nav-item d-flex align-items-center">
                         <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                             <i class="fa fa-user me-sm-1" aria-hidden="true"></i>
-                            <span class="d-sm-inline d-none">Sign In</span>
+                            <span class="d-sm-inline d-none">Logout</span>
                         </a>
                     </li>
                 </ul>
@@ -83,7 +83,9 @@
                             <?php echo 'วันที่ : ' . date("d/m/y H:i:s", strtotime($arr_event[$i]->evt_start_date)) . ' - ' . date("d/m/y H:i:s", strtotime($arr_event[$i]->evt_end_date)) ?>
                         </p>
                         <!-- <p class="card-text"><?php echo 'จำนวนสมาชิก' ?></p> -->
-                        <a href="#" class="btn btn-primary ">ดูรายละเอียด</a>
+                        <div class="col text-center">
+                            <a href="#" class="btn btn-primary ">ดูรายละเอียด</a>
+                        </div>
                     </div>
                 </div>
                 <?php } ?>
@@ -108,6 +110,13 @@
 
 </html>
 <style>
+
+
+
+
+
+
+
 
 
 
