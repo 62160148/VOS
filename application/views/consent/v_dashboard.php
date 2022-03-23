@@ -117,12 +117,14 @@ h4 {
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
+                                            <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                            Action</th>
                                     </tr>
                                 </thead>
                                 <tr>
-                                    <?php
-                                    for($i=0; $i<count($arr_event); $i++)
-                                    {
+                                <?php
+                                for($i=0; $i<count($arr_event); $i++)
+                                {
                                 ?>
                                     <!-- # -->
                                     <td><?php echo $i+1 ?></td>
@@ -172,6 +174,15 @@ h4 {
                                     <?php
                                     }
                                     ?>
+                                    <!-- Action -->
+                                    <td class="align-middle text-center text-sm">
+                                        <a href="">
+                                            <button type="button" class="btn btn-xs button_size"
+                                                style="background-color: #596CFF;">
+                                                    <i class="fas fa-search text-white"></i>
+                                            </button>
+                                        </a>
+                                    </td>
                                 </tr>
                                 <?php
                                     }
