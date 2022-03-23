@@ -20,12 +20,7 @@ class VOS_Controller extends MainController
 		$this->output_login("auth/v_user_login");
 	}
 	// function index()
-	function event_list()
-	{
-		$this->load->model('M_vos_event', 'vos');
-		$data['arr_event'] = $this->vos->get_event_all()->result();
-		$this->output_login("consent/v_list_event", $data);
-	}
+
 
 }
 // 

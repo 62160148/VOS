@@ -228,8 +228,45 @@
     .form-field input:hover::placeholder {
         color: #d61e2d;
     }
+
 </style>
 <!-- End CSS -->
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript">
+        function login() { //login user
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo site_url() . 'Login/login' ?>',
+                data: {
+                    user_name: $('#user_name').val(),
+                    user_password: $('#user_password').val()
+                },
+                success: function(data, status) { // function success
+                    var obj = JSON.parse(data)
+                    if (obj.length != 0) {
+                        setTimeout(function() {
+                            window.location.href =
+                                '<?php echo site_url() . 'Login/show_user_home/' ?>' + obj.user_per_id
+                        }, 500) //function set
+                    } //if
+                    else {
+                        alert('You entered incorrect information.')
+                    } //else
+                }, //end success
+                error: function(status) { //function error
+                    alert('You entered incorrect information.')
+                } //end error
+            });
+
+        } //end login user
+
+    </script>
+</head>
 
 <!-- Start HTML -->
 <div class="login-card">
@@ -245,16 +282,19 @@
                 <div class="icon">
                     <i class="far fa-user"></i>
                 </div>
-                <input type="text" placeholder="Username">
+                <input type="text" placeholder="Username" id="user_name" required>
             </div>
             <div class="form-field password">
                 <div class="icon">
                     <i class="fas fa-lock"></i>
                 </div>
-                <input type="password" placeholder="Password">
+                <!-- <div class="show-password"> -->
+                    <input type="password" placeholder="Password" id="user_password" required>
+                    <!-- <i class="material-icons visibility" id="togglePassword"></i> -->
+                <!-- </div> -->
             </div>
-
-            <button type="submit">
+            <br>
+            <button type="submit" onclick='login()'>
                 Login
             </button>
         </div>

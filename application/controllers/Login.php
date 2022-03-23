@@ -41,18 +41,19 @@ class Login extends MainController
     * @author Chakrit Boonprasert
     * @Create Date 2565-03-19
     */
-    public function show_user_home($User_emp_id)
+    public function show_user_home($user_per_id)
     { //show home
-        $this->load->model('M_ttp_Employee', 'meng');
-        $this->meng->Emp_ID  = $User_emp_id;
-        $data['Emp_ID'] = $this->meng->get_emp()->row();
+        $this->load->model('M_vos_person', 'mper');
+        $this->mper->per_id  = $user_per_id;
+        $data['Per_ID'] = $this->mper->get_per()->row();
 
-        $temp = $data['Emp_ID'];
-        $this->session->set_userdata('UsEmp_ID', $temp->Emp_ID);
-        $this->session->set_userdata('UsName_EN', $temp->Empname_eng . " " . $temp->Empsurname_eng);
-        $this->session->set_userdata('UsName_TH', $temp->Empname_th . " " . $temp->Empsurname_th);
-        $this->session->set_userdata('UsDepartment', $temp->Department);
-        $this->session->set_userdata('Usrole', $temp->User_Role);
+        $temp = $data['Per_ID'];
+        $this->session->set_userdata('UsPer_ID', $temp->user_per_id);
+        $this->session->set_userdata('UsFullName', $temp->per_name);
+        $this->session->set_userdata('UsLastName', $temp->per_lastname);
+        $this->session->set_userdata('UsImage', $temp->per_image);
+        $this->session->set_userdata('UsPoint', $temp->per_point);
+        $this->session->set_userdata('Usrole', $temp->user_role);
         $this->check_role();
     } //end show_user_home
 
@@ -66,12 +67,12 @@ class Login extends MainController
     */
     public function login()
     { //login for user
-        $User_login = $this->input->POST('User_login');
-        $User_pass_login = $this->input->POST('User_pass_login');
+        $user_name = $this->input->POST('user_name');
+        $user_password = $this->input->POST('user_password');
 
-        $this->load->model('M_ttp_login', 'mlog');
+        $this->load->model('M_vos_user_login', 'mlog');
 
-        $userlogin = $this->mlog->check_login($User_login, $User_pass_login)->row();
+        $userlogin = $this->mlog->check_login($user_name, $user_password)->row();
         if (count($userlogin) == 1) {
             $data = $userlogin;
             echo json_encode($data);
@@ -91,20 +92,16 @@ class Login extends MainController
     */
     public function check_role()
     { // check role
-        if (!empty($this->session->userdata('UsEmp_ID'))) {
+        if (!empty($this->session->userdata('UsPer_ID'))) {
             if ($_SESSION['Usrole'] == 1) {
-                redirect('Check_status/Check_status/home', 'refresh');
+                redirect('Vote/event_list', 'refresh');
             } else if ($_SESSION['Usrole'] == 2) {
-                redirect('Check_status/Check_status/home', 'refresh');
-            } else if ($_SESSION['Usrole'] == 3) {
-                redirect('Check_status/Check_status/home', 'refresh');
-            } else if ($_SESSION['Usrole'] == 4) {
-                redirect('Check_status/Check_status/home', 'refresh');
+                redirect('Report/show_dashboard', 'refresh');
             }
         }
         // if
         else {
-            redirect('Login/Login/show_user_login', 'refresh');
+            redirect('Login/show_user_login', 'refresh');
         }
         // else
     } //end check_role
@@ -119,10 +116,11 @@ class Login extends MainController
     */
     public function logout()
     { //logout to user login page
-        $this->session->unset_userdata('UsEmp_ID');
-        $this->session->unset_userdata('UsName_EN');
-        $this->session->unset_userdata('UsName_TH');
-        $this->session->unset_userdata('UsDepartment');
-        redirect('Login/Login/show_user_login', 'refresh');
+        $this->session->unset_userdata('UsPer_ID');
+        $this->session->unset_userdata('UsFullName');
+        $this->session->unset_userdata('UsLastName');
+        $this->session->unset_userdata('UsImage');
+        $this->session->unset_userdata('UsPoint');
+        redirect('Login/show_user_login', 'refresh');
     } //end logout
 }
