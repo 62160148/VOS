@@ -19,6 +19,8 @@ class Event_Management extends MainController
     }
     public function show_event_list()
     {
-        $this->output('consent/v_event_list');
+        $this->load->model('M_vos_event', 'vos');
+        $data['arr_event'] = $this->vos->get_event_all()->result();
+        $this->output('consent/v_event_list', $data);
     }
 }

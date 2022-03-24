@@ -22,16 +22,18 @@ img {
 </style>
 <div class="container-fluid py-4">
     <div class="card-header" id="card_radius">
-        <div class="text-end">
+        <!-- <div class="text-end">
             <a href='#' id='download_link' onClick='javascript:ExcelReport();' class="btn btn-secondary float-right"><i
                     class="fa fa-download"></i>&emsp;Excel</a>
-        </div>
+        </div> -->
         <h2>Manage Event (จัดการหน้าอีเว้นท)</h2>
     </div>
     <div class="card-body">
         <div class="card-header" id="card_radius" style="background-color: #F8F8F8">
             <h4>
-                รายการ Event
+                รายการ Event <?php {
+                                    echo "  ";
+                                } ?><i class='fa fa-plus-circle'></i>
             </h4>
             <div class="table-responsive">
                 <table class="table" style="width:100%" id="example">
@@ -47,12 +49,23 @@ img {
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        $No = 1;
+                        for ($i = 0; $i < count($arr_event); $i++) { ?>
+
                         <tr>
-                            <td>1</td>
+                            <td style='text-align:center'>
+                                <?php {
+                                        echo $No++;
+                                    } ?></td>
+
                             <td>
-                                <div class="image-cropper"><img
+                                <!-- <div class="image-cropper"><img
                                         src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 0</div>
+                                        width="50" height="50"> มกุล 0</div> -->
+                                <?php
+                                    echo $arr_event[$i]->evt_image;
+                                    ?>
                             </td>
                             <td>11/3/2021 13:00:00</td>
                             <td>11/3/2021 17:00:00</td>
@@ -64,160 +77,10 @@ img {
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 1</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 2</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 3</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 4</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 5</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>7</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 6</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>8</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 7</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>9</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 8</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>10</td>
-                            <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> มกุล 9</div>
-                            </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
-                            <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
-                                </div>
-                            </td>
-                        </tr>
+
+                        <?php } ?>
                     </tbody>
+
                 </table>
             </div>
         </div>
