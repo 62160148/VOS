@@ -110,10 +110,10 @@ h4 {
                                             Event Name</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Start Event</th>
+                                            Event Start</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            End Event</th>
+                                            Event End</th>
                                         <th
                                             class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Status</th>
