@@ -101,7 +101,6 @@ class User_Management extends MainController
     * @Create  Date 2565-03-24
     * @Update  Date 2565-03-24
     */
-
     function update_edit_user()
     {
         $input_id = $this->input->post('input_id');
@@ -146,78 +145,6 @@ class User_Management extends MainController
 
         echo json_encode($data);
 
-        // $data['username'] = $this->muser->check_user_name()->result();
-        // if ($id) {
-        //     $data = [
-        //         "status" => true,
-        //         "mess" => "",
-        //         "user_id" => $id,
-        //         "image" => $input_image
-        //     ];
-        // } else {
-        //     // delete_person
-        //     $this->dauser->per_id = $id;
-        //     $this->dauser->delete_person();
-        //     $data = [
-        //         "status" => false,
-        //         "mess" => "Failed to add new user.",
-        //         "user_id" => $id,
-        //     ];
-        // }
-
-
-
-
-
-        // if ($per_id > 0) {
-        //     $this->muser->username = $input_student_id;
-        //     // $data['username'] = $this->muser->check_user_name()->result();
-
-        //     // if (count($data['username']) == 0) {
-        //         //insert DB user login
-        //         $this->dauser->user_name = $input_student_id;
-        //         $this->dauser->user_password = $input_password;
-        //         $this->dauser->user_role = $input_roler;
-        //         $this->dauser->user_per_id = $per_id;
-        //         $user_id = $this->dauser->update_user_login();
-
-        //         if ($user_id) {
-        //             $data = [
-        //                 "status" => true,
-        //                 "mess" => "",
-        //                 "user_id" => $user_id,
-        //                 "image"=>$input_image
-        //             ];
-        //         } else {
-        //             // delete_person
-        //             $this->dauser->per_id = $per_id;
-        //             $this->dauser->delete_person();
-        //             $data = [
-        //                 "status" => false,
-        //                 "mess" => "Failed to add new user.",
-        //                 "user_id" => $user_id,
-        //             ];
-        //         }
-        //     // } else {
-        //     //     // delete_person
-        //     //     $this->dauser->per_id = $per_id;
-        //     //     $this->dauser->delete_person();
-        //     //     $data = [
-        //     //         "status" => false,
-        //     //         "mess" => "This user Student ID already exists.",
-        //     //         "user_id" => "",
-        //     //     ];
-        //     // }
-
-        // } else {
-        //     $data = [
-        //         "status" => false,
-        //         "mess" => "Failed to add new user.",
-        //         "user_id" => "",
-        //     ];
-        // }
-
-        // echo json_encode($data);
     } //update_edit_user อัพเดทการแก้ไขรายละเอียดของผู้ใช้งาน
 
 

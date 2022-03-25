@@ -1,7 +1,7 @@
 <!--
     /*
-    * v_add_user
-    * Add User
+    * v_edit_user
+    * Edit User
     * @input -
     * @output -
     * @author Apinya Phadungkit
