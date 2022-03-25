@@ -42,4 +42,30 @@ class Da_vos_user_login extends vos_model
 
     }
 
+    /*
+    * Function update_edit_user_login
+    * @input  -   
+    * @output -
+    * @author Apinya Phadungkit
+    * @Create Date 2565-3-24
+    * @Update Date 2565-3-24
+    */
+    function update_user_login2($id)
+    {
+        $sql = "UPDATE vos_database.vos_user_login SET(user_name, user_password, user_role, user_per_id)
+        VALUES (?,?,?,?)";
+        $this->db->query($sql, array($this->user_name,$this->user_password, $this->user_role,$this->user_per_id));
+        // return $this->db->insert_id();
+
+    } //update_edit_user_login
+
+    function update_user_login($id)
+    {
+        $sql = "UPDATE vos_database.vos_user_login AS lo
+		SET lo.user_name = ? , lo.user_password = ? , lo.user_role = ? , lo.user_per_id = ?
+		WHERE lo.user_per_id = $id";
+        $this->db->query($sql, array($this->user_name,$this->user_password, $this->user_role,$this->user_per_id));
+        // return $this->db->insert_id();
+    }
+
 }//end class Da_vos_user_login

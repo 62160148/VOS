@@ -98,7 +98,7 @@
 
                         <td class="align-middle text-center">
                           <!-- Button Edit -->
-                          <a href=" <?php echo site_url() . 'User_Management/edit_user/' . $row->user_per_id; ?>">
+                          <a href="<?php echo site_url() . 'User_Management/edit_user/' . $row->user_per_id; ?>" >
                           <button type="button" class="btn btn-link text-warning text-gradient px-3 mb-0">
                             <i class="far fa-edit me-2"></i>Edit</button>
                            </a>

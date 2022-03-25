@@ -36,7 +36,6 @@ class User_Management extends MainController
         // print_r($data);
         // $this->output('consent/v_assessor_management', $data);
         $this->output('consent/v_user_management', $data);
-
     } //end show_user_management
 
     /*
@@ -55,7 +54,6 @@ class User_Management extends MainController
         $data['arr_user'] = $this->ruser->check_user_role()->result();
         // print_r($data);
         $this->output('consent/v_user_management', $data);
-
     } //end user_role_user
 
     /*
@@ -67,7 +65,7 @@ class User_Management extends MainController
      * @Create  Date 2565-03-19
      * @Update  Date 2565-03-19
      */
-	
+
     public function user_role_admin()
     {
         $this->load->model('M_vos_user_login', 'radmin');
@@ -86,22 +84,146 @@ class User_Management extends MainController
     * @Create  Date 2565-03-21
     * @Update  Date 2565-03-21
     */
-	
+
     function edit_user($id)
-	{
+    {
         $this->load->model('M_vos_user_login', 'muser');
-		$data['arr_user'] = $this->muser->get_user_edit($id)->row();
-        // $data['arr_req'] = $this->mreq->get_by_id($id)->row();
-        // $data['arr_emp'] = $this->mreq->get_all()->row();
-        // $data['arr_user'] = $this->mreq->get_history_user($id)->row();
-        $this->output('consent/v_edit_user',$data);
-	} //edit_user แก้ไขรายละเอียดของผู้ใช้งาน
+        $data['arr_user'] = $this->muser->get_user_edit($id)->row();
+        $this->output('consent/v_edit_user', $data);
+    } //edit_user แก้ไขรายละเอียดของผู้ใช้งาน
+
+    /*
+    * update_edit_user
+    * Show page request form detail
+    * @input  id   
+    * @output update_edit_user
+    * @author Apinya Phadungkit
+    * @Create  Date 2565-03-24
+    * @Update  Date 2565-03-24
+    */
+
+    function update_edit_user()
+    {
+        $input_id = $this->input->post('input_id');
+        $input_student_id = $this->input->post('input_student_id');
+        $input_firstname = $this->input->post('input_firstname');
+        $input_lastname = $this->input->post('input_lastname');
+        $input_email = $this->input->post('input_email');
+        $input_password = $this->input->post('input_password');
+        $input_cluster = $this->input->post('input_cluster');
+        $input_score = $this->input->post('input_score');
+        $input_roler = $this->input->post('input_roler');
+        $input_image = $this->input->post('input_image');
+
+        $this->load->model('M_vos_user_login', 'muser');
+        $this->load->model('Da_vos_user_login', 'dauser');
+        $this->load->model('Da_vos_person', 'daper');
+
+        //insert DB person
+        $this->daper->per_name = $input_firstname;
+        $this->daper->per_lastname = $input_lastname;
+        $this->daper->per_email = $input_email;
+        $this->daper->per_image = $input_image == "" ? "" : $input_image;
+        $this->daper->per_point = $input_score;
+        $this->daper->per_cls_id = $input_cluster;
+        // $per_id = $this->daper->update_edit();
+        $this->daper->update_edit($input_id);
+
+        $this->muser->username = $input_student_id;
+        $this->dauser->user_name = $input_student_id;
+        $this->dauser->user_password = $input_password;
+        $this->dauser->user_role = $input_roler;
+        $this->dauser->user_per_id = $input_id;
+        // $per_id = $this->dauser->update_user_login();
+        $this->dauser->update_user_login($input_id);
+
+        $data = [
+            "status" => true,
+            "mess" => "",
+            "user_id" => $input_id,
+            "image" => $input_image
+        ];
+
+        echo json_encode($data);
+
+        // $data['username'] = $this->muser->check_user_name()->result();
+        // if ($id) {
+        //     $data = [
+        //         "status" => true,
+        //         "mess" => "",
+        //         "user_id" => $id,
+        //         "image" => $input_image
+        //     ];
+        // } else {
+        //     // delete_person
+        //     $this->dauser->per_id = $id;
+        //     $this->dauser->delete_person();
+        //     $data = [
+        //         "status" => false,
+        //         "mess" => "Failed to add new user.",
+        //         "user_id" => $id,
+        //     ];
+        // }
+
+
+
+
+
+        // if ($per_id > 0) {
+        //     $this->muser->username = $input_student_id;
+        //     // $data['username'] = $this->muser->check_user_name()->result();
+
+        //     // if (count($data['username']) == 0) {
+        //         //insert DB user login
+        //         $this->dauser->user_name = $input_student_id;
+        //         $this->dauser->user_password = $input_password;
+        //         $this->dauser->user_role = $input_roler;
+        //         $this->dauser->user_per_id = $per_id;
+        //         $user_id = $this->dauser->update_user_login();
+
+        //         if ($user_id) {
+        //             $data = [
+        //                 "status" => true,
+        //                 "mess" => "",
+        //                 "user_id" => $user_id,
+        //                 "image"=>$input_image
+        //             ];
+        //         } else {
+        //             // delete_person
+        //             $this->dauser->per_id = $per_id;
+        //             $this->dauser->delete_person();
+        //             $data = [
+        //                 "status" => false,
+        //                 "mess" => "Failed to add new user.",
+        //                 "user_id" => $user_id,
+        //             ];
+        //         }
+        //     // } else {
+        //     //     // delete_person
+        //     //     $this->dauser->per_id = $per_id;
+        //     //     $this->dauser->delete_person();
+        //     //     $data = [
+        //     //         "status" => false,
+        //     //         "mess" => "This user Student ID already exists.",
+        //     //         "user_id" => "",
+        //     //     ];
+        //     // }
+
+        // } else {
+        //     $data = [
+        //         "status" => false,
+        //         "mess" => "Failed to add new user.",
+        //         "user_id" => "",
+        //     ];
+        // }
+
+        // echo json_encode($data);
+    } //update_edit_user อัพเดทการแก้ไขรายละเอียดของผู้ใช้งาน
 
 
     public function show_add_user()
     {
         $this->output('consent/v_add_user');
-
     }
     public function add_user()
     {
@@ -145,7 +267,7 @@ class User_Management extends MainController
                         "status" => true,
                         "mess" => "",
                         "user_id" => $user_id,
-                        "image"=>$input_image
+                        "image" => $input_image
                     ];
                 } else {
                     // delete_person
@@ -167,7 +289,6 @@ class User_Management extends MainController
                     "user_id" => "",
                 ];
             }
-
         } else {
             $data = [
                 "status" => false,
@@ -190,7 +311,7 @@ class User_Management extends MainController
                 echo $this->upload->display_errors();
             } else {
                 $data = $this->upload->data();
-            //  echo $data;
+                //  echo $data;
                 $image = [
                     "url" => 'assests/image/user/' . $data["file_name"],
                 ];
