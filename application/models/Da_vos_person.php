@@ -26,4 +26,20 @@ class Da_vos_person extends vos_model
         // return $this->db->insert_id();
     }
 
+	    /*
+    * Function delete_person
+    * @input  $id   
+    * @output -
+    * @author Apinya Phadungkit
+    * @Create Date 2565-3-25
+    * @Update Date 2565-3-25
+    */
+    function delete_person($id)
+    {
+        $sql = "DELETE FROM vos_database.vos_person
+        WHERE per_id = $id";
+        $query = $this->db->query($sql);
+        return $query;
+    }//delete_person
+
 }

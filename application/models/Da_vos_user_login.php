@@ -59,4 +59,20 @@ class Da_vos_user_login extends vos_model
         // return $this->db->insert_id();
     }
 
+    /*
+    * Function delete_user_login
+    * @input  $id   
+    * @output -
+    * @author Apinya Phadungkit
+    * @Create Date 2565-3-25
+    * @Update Date 2565-3-25
+    */
+    function delete_user_login($id)
+    {
+        $sql = "DELETE FROM vos_database.vos_user_login
+        WHERE user_per_id = $id";
+        $query = $this->db->query($sql);
+        return $query;
+    }//delete_user_login
+
 }//end class Da_vos_user_login

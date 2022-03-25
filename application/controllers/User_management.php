@@ -31,10 +31,6 @@ class User_Management extends MainController
     {
         $this->load->model('M_vos_user_login', 'muser');
         $data['arr_user'] = $this->muser->get_user_list()->result();
-        // $data['arr_position'] = $this->map->get_position_all()->result();
-        // print_r($data['arr_position']);
-        // print_r($data);
-        // $this->output('consent/v_assessor_management', $data);
         $this->output('consent/v_user_management', $data);
     } //end show_user_management
 
@@ -147,6 +143,30 @@ class User_Management extends MainController
 
     } //update_edit_user อัพเดทการแก้ไขรายละเอียดของผู้ใช้งาน
 
+    /*
+    * delete_user
+    * Show page request form detail
+    * @input  id   
+    * @output delete_user
+    * @author Apinya Phadungkit
+    * @Create  Date 2565-03-25
+    * @Update  Date 2565-03-25
+    */
+
+    function delete_user($id)
+    {
+        $this->load->model('Da_vos_user_login', 'dauser');
+        $this->load->model('Da_vos_person', 'daper');
+        print($id);
+        // $this->dauser->delete_user_login($id);
+        // $this->daper->delete_person($id);
+
+        // $this->load->model('M_vos_user_login', 'muser');
+        // $data['arr_user'] = $this->muser->get_user_list()->result();
+        // $this->output('consent/v_user_management', $data);
+        
+        // redirect('consent/v_user_management');
+    } //delete_user ลบข้อมูลของผู้ใช้งาน
 
     public function show_add_user()
     {
