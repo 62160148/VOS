@@ -30,6 +30,13 @@ img {
     height: 100%;
     width: auto;
 }
+.btn-sm{
+    margin-bottom: 0!important;
+    border-radius: 1rem!important;
+}
+button{
+    border :0px!important;
+}
 </style>
 <div class="container-fluid py-4">
     <div class="card-header" id="card_radius">
@@ -44,7 +51,7 @@ img {
             <h4>
                 รายการ Event <?php {
                                     echo "  ";
-                                } ?><a class="btn icon-btn btn-info" href="#">
+                                } ?><a class="btn icon-btn btn-info" href="<?php echo site_url() ?>Event_Management/show_event_list_detail_event">
                     <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>
                     ADD
                 </a>
@@ -63,10 +70,15 @@ img {
                         </tr>
                     </thead>
                     <tbody>
+                   
+
                         <?php
                         $No = 1;
                         for ($i = 0; $i < count($arr_event); $i++) { ?>
-
+ <form  action="<?php echo site_url() ?>Event_Management/show_event_list_detail_member" method="post" enctype="multipart/form-data" name="event">
+                        <input type="hidden"  name="EventID" value="<?php echo $arr_event[$i]->evt_id ?>">
+                         
+                       
                         <tr>
                             <td style='text-align:center'>
                                 <?php {
@@ -86,11 +98,13 @@ img {
                             <td> <?php {
                                             echo $arr_event[$i]->evt_end_date;
                                         } ?></td>
-                            <td> <a class="btn icon-btn btn-info" href="#">
-                                    <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>
-                                    + MEMBER
-                                </a></td>
-                            <td><i class='fa fa-edit' style="font-size: 2em; color:#cfb017;"></i></td>
+                            <td>  <button class="btn btn-info btn-sm" type="submit">
+                
+               + Member</button>
+                       </td> 
+                            <td><button style="background-color: #F8F8F8"  type="submit">
+                 </form>
+                <i class='fa fa-edit' style="font-size: 2em; color:#cfb017;"></i></button>  </form></td>
                             <td>
                                 <div onclick="deleteRow(this)">
                                     <i class='fa fa-trash' style="color: red;  font-size: 2em;"></i>
@@ -105,10 +119,7 @@ img {
             </div>
         </div>
     </div>
-    <div class="card-footer">
-        <center><a href="<?php echo site_url() . 'Report/Report/show_report_all'; ?>"
-                class="btn btn-secondary float-center"><i class="fas fa-arrow-alt-circle-left"></i> Back</a></center>
-    </div>
+     
 </div>
 <script>
 function deleteRow(r) {

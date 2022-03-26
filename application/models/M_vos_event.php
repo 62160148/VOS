@@ -12,9 +12,7 @@ class M_vos_event extends Da_vos_event
     public function get_event_all()
     {
         $sql = "SELECT *
-                FROM  vos_database.vos_event
-                -- LEFT JOIN vos_database.vos_event
-                -- ON  vos_database.vos_event_group.evt_id =  vos_database.vos_event.evt_id";
+                FROM vos_database.vos_event";
         $query = $this->db->query($sql);
         return $query;
     }
@@ -23,6 +21,13 @@ class M_vos_event extends Da_vos_event
         $sql = "SELECT COUNT(evt_id) AS numEvent
                 FROM vos_database.vos_event";
         $query = $this->db->query($sql)->result();
+        return $query;
+    }
+    public function get_event_by_id()
+    {
+        $sql = "SELECT * 
+        FROM vos_database.vos_event as Evnt WHERE Evnt.evt_id=?";
+        $query = $this->db->query($sql, array($this->Evnt_id));
         return $query;
     }
 }

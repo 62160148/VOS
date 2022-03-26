@@ -20,5 +20,22 @@ class M_vos_event_group extends Da_vos_event_group
         $query = $this->db->query($sql);
         return $query;
     }
-
+    
+    public function get_event_group_by_id($id=1)
+    {
+                    $sql = "SELECT * FROM vos_database.vos_event_group AS gro
+                    INNER JOIN vos_database.vos_event AS event
+                    ON gro.grp_evt_id = event.evt_id
+                    WHERE gro.grp_evt_id = id";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+    public function get_event_group_by_id_set()
+    {
+                    $sql = "SELECT * FROM vos_database.vos_event_group AS gro
+                    WHERE gro.grp_evt_id = ?";
+        $query = $this->db->query($sql, array($this->Evnt_group_id));
+        
+        return $query;
+    }
 }
