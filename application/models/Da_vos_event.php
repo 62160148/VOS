@@ -28,6 +28,14 @@ class Da_vos_event extends vos_model
         $this->db->query($sql, array($this->evt_name,$this->evt_detail,$this->evt_start_date,$this->evt_end_date,$this->evt_id));
     }
 
-        
+    
+    function delete_event()
+    {
+        $sql = "DELETE FROM vos_database.vos_event WHERE evt_id = ?;";
+        $query = $this->db->query($sql, array($this->evt_id));
+        return $query;
+
+    }
+
 
 }

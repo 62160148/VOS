@@ -35,22 +35,30 @@ class Event_Management extends MainController
 
         $this->output('consent/v_event_list_detail_event', $data);
     }
+
+
     public function show_event_list_detail_member()
     {   
-        $person_id = 1;
-        $event_id = 1;
-        $this->load->model('M_vos_person', 'per');
+        
+         
+        //if ดักว่า มีข้อมูลมั้ย ในกรณีใช้ del isert update
+        if($this->input->post('event_id')!=NULL){
+            $_SESSION["evt_id"]  = $this->input->post('event_id');
+        }
+
+        $event_id = $_SESSION["evt_id"];
+        //$this->load->model('M_vos_person', 'per');
         $this->load->model('M_vos_event', 'event');
         $this->load->model('M_vos_event_group', 'event_gro');
         $this->load->model('M_vos_topic', 'top');
 
         
-        $this->per->per_id =$person_id;
+        //$this->per->per_id =$person_id;
         $this->event->Evnt_id =$event_id;
         $this->event_gro->Evnt_group_id =$event_id;
         $this->top->Evnt_group_id = $event_id;
 
-        $data['per_event'] = $this->per->get_per()->result();
+       // $data['per_event'] = $this->per->get_per()->result();
         $data['event'] = $this->event->get_event_by_id()->result();
         $data['event_group'] = $this->event_gro->get_event_group_by_id_set()->result();
 
@@ -67,7 +75,7 @@ class Event_Management extends MainController
         
         
 
-        $this->output('consent/v_event_list_detail_member', $data);
+         $this->output('consent/v_event_list_detail_member', $data);
     }
 
 
@@ -88,14 +96,14 @@ class Event_Management extends MainController
         
         $this->event->insert_event(); //add data in table
         copy($event_image_file, 'assests/image/event/'.$event_image_name); //add flie in folder
-        $this->output('consent/v_event_list');
+        redirect('Event_Management/show_event_list');
     }
 
 
     public function event_management_insert_member()
     {   
  
-
+        
         $this->load->model('Da_vos_event_group', 'da_event');
         $this->da_event->grp_cls_id = $this->input->post('newmemeber');
         $this->da_event->grp_evt_id = $this->input->post('event_id'); 
@@ -104,8 +112,8 @@ class Event_Management extends MainController
  
         redirect('Event_Management/show_event_list_detail_member');
     }
-
-
+    
+ 
     public function event_management_delete_member($id)
     {   
 
@@ -121,7 +129,7 @@ class Event_Management extends MainController
 
     public function event_management_update_event()
     {   
-        $event_id = 1;
+        $event_id = $this->input->post('event_id');
         
         $this->load->model('Da_vos_event', 'event');
         $this->event->evt_name = $this->input->post('event_name');
@@ -131,7 +139,7 @@ class Event_Management extends MainController
         $this->event->evt_id= $event_id;
         $this->event->update_event();
 
-        redirect('Event_Management/show_event_list_detail_member');
+        redirect('Event_Management/show_event_list');
 
     }
 
@@ -153,15 +161,29 @@ class Event_Management extends MainController
 
     public function event_management_delete_choice($id)
     {   
-        print_r($id);
+        //print_r($id);
         $this->load->model('Da_vos_topic', 'da_choice');
         $this->da_choice->top_id = $id;
 
-        // $this->da_choice->deletet_event_choice();
+         $this->da_choice->deletet_event_choice();
 
         
-        //redirect('Event_Management/show_event_list_detail_member');
+         redirect('Event_Management/show_event_list_detail_member');
 
     }
+
+    public function event_management_delete_event($id)
+    {   
+        print_r($id);
+        $this->load->model('Da_vos_event', 'da_evnt');
+        $this->da_evnt->evt_id = $id;
+
+         $this->da_evnt->delete_event();
+
+        
+         redirect('Event_Management/show_event_list');
+
+    }
+
 
 }

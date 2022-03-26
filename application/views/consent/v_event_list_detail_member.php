@@ -39,11 +39,11 @@ img {
             <nav class="navbar navbar-main navbar-expand-lg px-0 mx-2 shadow-none border-radius-xl " id="navbarBlur" navbar-scroll="true">
               <div class="container-fluid py-2 px-1">
               <h2>Manage Event </h2>
-  
+     
               </div>
             </nav>
             <!-- End Navbar -->
-            <!-- ปุ่มดำเนินการเพิ่ม  -->
+        
             <div class="card-header pb-0 ">
                
               <h2>รายการอีเว้นท์</h2>
@@ -52,7 +52,7 @@ img {
                 <div class="col-md-6">
               
                 <form  action="<?php echo site_url() ?>Event_Management/event_management_update_event" method="post" enctype="multipart/form-data" name="event" >
-               
+                <input type="hidden"   name="event_id" value="<?php echo $event_id ?>";>
                 <b> Event Name :
                 <input type="text" class="form-control"   value = " <?php echo $event[0]->evt_name ?>" name="event_name" required>
                 Detail :
@@ -61,7 +61,7 @@ img {
             <div class="row">       
                 <div class="col-md-6">
             Start Date :
-
+            
             
             <?php $fulldate = $event[0]->evt_start_date;   $time =  substr($fulldate,11);  $date =  substr($fulldate,0,10);  ?>
             <input class="form-control" type="datetime-local" value="<?php echo  $date."T".$time ?>"  name="event_start_date"required> 
@@ -75,22 +75,24 @@ img {
               <input type="text" class="form-control" placeholder="นายกท่านหนึ่ง"  value = "นายกท่านหนึ่ง">
               Create Date  :
         <input class="form-control" type="datetime-local" value="2018-11-23T10:30:00" > -->
-</b>
-<br> 
-<h4> ตัวเลือก  
-<button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddchoice">
+                </b>
+                <br> 
+                <h4> ตัวเลือก  
+                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#ModalAddchoice">
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 เพิ่มตัวเลือก</button></h4><br>
             </tbody>
             <table class="table   " style="width : 100% " id="example ">
                          <!-- หัวตาราง  -->
+
+                         <?php if(count($event_choice)!=0){?>
                         <tr>
                             <th class="text-center"  style="width: 15%">#</th>
                             <th style="width:70%">Choice</th>
                             
                             <th class="text-center"style="width :15%">Del</th>
                         </tr>
-                        
+                        <?php }?>
                     <!-- เนื้อหาตาราง  -->
                     
                     <?php for( $i=0;$i<count($event_choice);$i++){ ?>
@@ -140,7 +142,7 @@ img {
                                                     </a>
                                                     <!-- ปุ่มยืนยันการลบ -->
                                                     <a
-                                                        href="<?php echo base_url().'Event_Management/event_management_delete_choice/'.$event_choice[$i-1]->top_id; ?>">
+                                                        href="<?php echo base_url().'Event_Management/event_management_delete_choice/'.$event_choice[$i]->top_id; ?>">
                                                         <button type="button"
                                                             class="btn bg-gradient-success">Confirm</button>
                                                     </a>
@@ -163,22 +165,21 @@ img {
                 <!-- ตารางมกุล -->
                 <table class="table   " style="width : 100% " id="example ">
                          <!-- หัวตาราง  -->
+                         <?php if($amount_cluster[0]->numclus!=0){?>
                         <tr>
                             <th class="text-center"  style="width: 15%">#</th>
                             <th style="width:70%">Cluster</th>
                             
                             <th class="text-center"style="width :15%">Del</th>
                         </tr>
-                        
+                        <?php }?>
                     <!-- เนื้อหาตาราง  -->
                     
                     <?php for( $i=0;$i<$amount_cluster[0]->numclus;$i++){ ?>
                         <tr>
                             <td class="text-center"><?php echo   $i +1 ?></td>
                             <td>
-                                <div class="image-cropper"><img
-                                        src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
-                                        width="50" height="50"> <?php echo $cluster[$i]->cls_name ?></div>
+                                <div class="image-cropper">  <?php echo $cluster[$i]->cls_name ?></div>
                             </td>
 
                             <td class="text-center">
@@ -220,8 +221,9 @@ img {
                                                     </a>
                                                     <!-- ปุ่มยืนยันการลบ -->
                                                     <a
+                                                    
                                                         href="<?php echo base_url().'Event_Management/event_management_delete_member/'.$cluster[$i]->grp_cls_id; ?>">
-                                                        <button type="button"
+                                                        <button type="submit"
                                                             class="btn bg-gradient-success">Confirm</button>
                                                     </a>
                                                 </div>
@@ -332,71 +334,6 @@ img {
 
 
 <script>
-
-$(document).ready(function(){
-
-    //====================
-    var rowIdx = 1;
-    var i=1;
-    $('#addBtn').on('click', function () {
-    // Adding a row inside the tbody.
-        $('#tbody').append(`<tr id="R${++rowIdx}">
-                        <th scope="col">#</th>
-                        <th scope="col">choice</th>
-                        <th scope="col"> Action</th>
-                    </tr>
-                </thead>
-                <tbody id="tbody">
-
-                <td >
-            <p>${rowIdx}</p>
-            </td>
-
-
-                        
-                        <td>
-                        <input type="text" name="choice${i}" id="choice${i}"  placeholder="หัวข้อตัวเลือก" >
-                        </td>
-                        <!-- column ดำเนินการ -->
-                        <td style='text-align: center;'>
-                        <button class="btn btn-danger remove"
-                    type="button"><i class="fa fa-times" aria-hidden="true"></i></button>
-                </td>
-                            <!-- ปุ่มดำเนินการ -->
-                            </td>
-                    </tr>`);
-                    i++;
-
-        });
-
-        // jQuery button click event to remove a row.
-    $('#tbody').on('click', '.remove', function () {
-        // Getting all the rows next to the row
-        // containing the clicked button
-        var child = $(this).closest('tr').nextAll();
-        // Iterating across all the rows
-        // obtained to change the index
-        child.each(function () {
-            // Getting <tr> id.
-            var id = $(this).attr('id');
-            // Getting the <p> inside the .row-index class.
-            var idx = $(this).children('.row-index').children('p');
-            // Gets the row number from <tr> id.
-            var dig = parseInt(id.substring(1));
-            // Modifying row index.
-            idx.html(`Row ${dig - 1}`);
-            // Modifying row id.
-            $(this).attr('id', `R${dig - 1}`);
-        });
-        // Removing the current row.
-        $(this).closest('tr').remove();
-        // Decreasing total number of rows by 1.
-        rowIdx--;
-    });
-    $('select').selectize({
-          sortField: 'text'
-      });
-      
-});
+ 
 
 </script>

@@ -37,6 +37,9 @@ img {
 button{
     border :0px!important;
 }
+.btn {
+    display: unset!important;
+}
 </style>
 <body class="g-sidenav-show   bg-gray-100">
   <!-- <div class="min-height-300 bg-primary position-absolute w-100"></div> -->
@@ -60,8 +63,8 @@ button{
                 รายการ Event <?php {
                                     echo "  ";
                                 } ?><a class="btn icon-btn btn-info" href="<?php echo site_url() ?>Event_Management/show_event_list_detail_event">
-                    <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>
-                    ADD
+                    <span class="glyphicon btn-glyphicon   img-circle "></span>
+                    <i class="fa fa-plus" aria-hidden="true"></i>ADD
                 </a>
             </h4>
             <div class="table-responsive">
@@ -84,7 +87,7 @@ button{
                         $No = 1;
                         for ($i = 0; $i < count($arr_event); $i++) { ?>
                 <form  action="<?php echo site_url() ?>Event_Management/show_event_list_detail_member" method="post" enctype="multipart/form-data" name="event">
-                        <input type="hidden"  name="EventID" value="<?php echo $arr_event[$i]->evt_id ?>">
+                <input type="hidden"  name="event_id" value="<?php echo $arr_event[$i]->evt_id ?>">
                          
                        
                         <tr>
@@ -114,9 +117,51 @@ button{
                  </form>
                 <i class='fa fa-edit' style="font-size: 2em; color:#cfb017;"></i></button>  </form></td>
                             <td>
-                                <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;  font-size: 2em;"></i>
-                                </div>
+                            
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                                data-bs-target="#ModalDeleteevent<?php echo $i?>">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                             <!-- Start modal delete event -->
+                                        <div class="modal fade" id="ModalDeleteevent<?php echo $i; ?>" tabindex="-1"
+                                        role="dialog" aria-labelledby="ModalDeleteeventTitle" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="col-12 text-end">
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="py-3 text-center">
+                                                        <div>
+                                                            <i class="fas fa-exclamation-triangle fa-8x"
+                                                                style="color:#FBD418"></i>
+                                                        </div>
+                                                        <h4 class="text-gradient text-danger mt-4">
+                                                            Confirm Delete ?
+                                                            
+                                                        </h4>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <!-- ปุ่มยกเลิกการลบ -->
+                                                    <a href="">
+                                                        <button type="button" class="btn bg-gradient-danger"
+                                                            data-bs-dismiss="modal">Cancel</button>
+                                                    </a>
+                                                    <!-- ปุ่มยืนยันการลบ -->
+                                                    <a
+                                                        href="<?php echo base_url().'Event_Management/event_management_delete_event/'.$arr_event[$i]->evt_id ?>">
+                                                        <button type="button"
+                                                            class="btn bg-gradient-success">Confirm</button>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End modal delete event -->
                             </td>
                         </tr>
 
@@ -133,8 +178,5 @@ button{
 </main>
                                     </body>
 <script>
-function deleteRow(r) {
-    var i = r.parentNode.parentNode.rowIndex;
-    document.getElementById("example").deleteRow(i);
-}
+ 
 </script>
