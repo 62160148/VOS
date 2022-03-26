@@ -42,4 +42,11 @@ class Da_vos_person extends vos_model
         return $query;
     }//delete_person
 
+    function update_score($id)
+    {
+        $sql = "UPDATE vos_database.vos_person AS per
+		SET  per.per_point = ?
+		WHERE per.per_id = $id";
+        $this->db->query($sql, array($this->per_point));
+    }
 }

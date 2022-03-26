@@ -54,6 +54,12 @@ class Vote extends MainController
         $this->vos->pot_per_id = $per_id;
         $this->vos->insert_point();
 
+        $this->load->model('Da_vos_person', 'per');
+		$result = $_SESSION['UsPoint'];
+		$result = $result -  $point;
+        $this->per->per_point = $result;
+        $this->per->update_score($per_id);
+	
         Redirect('/Vote/vote/' . $evt_id);
     }
 }
