@@ -53,20 +53,26 @@ button{
             <nav class="navbar navbar-main navbar-expand-lg px-0 mx-2 shadow-none border-radius-xl " id="navbarBlur" navbar-scroll="true">
               <div class="container-fluid py-2 px-1">
               <h3>Manage Event </h3>
+
+
+
+
+              <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                  <div class="input-group">
+                    <!-- Button  -->
+                    <a href="<?php echo site_url() ?>Event_Management/show_event_list_detail_event">
+                      <button type="button" class="btn bg-gradient-info btn-block mb-3">
+                        <i class="fas fa-plus"></i>&nbsp;&nbsp;Add Event
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
   
               </div>
             </nav>
-            <!-- End Navbar -->
-            <!-- ปุ่มดำเนินการเพิ่ม  -->
-            <div class="card-header pb-0 ">
-            <h4>
-                รายการ Event <?php {
-                                    echo "  ";
-                                } ?><a class="btn icon-btn btn-info" href="<?php echo site_url() ?>Event_Management/show_event_list_detail_event">
-                    <span class="glyphicon btn-glyphicon   img-circle "></span>
-                    <i class="fa fa-plus" aria-hidden="true"></i>ADD
-                </a>
-            </h4>
+ 
             <div class="table-responsive">
                 <table class="table" style="width:100%" id="example">
                     <thead class="thead-light">
