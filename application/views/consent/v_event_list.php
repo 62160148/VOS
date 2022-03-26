@@ -38,16 +38,24 @@ button{
     border :0px!important;
 }
 </style>
-<div class="container-fluid py-4">
-    <div class="card-header" id="card_radius">
-        <!-- <div class="text-end">
-            <a href='#' id='download_link' onClick='javascript:ExcelReport();' class="btn btn-secondary float-right"><i
-                    class="fa fa-download"></i>&emsp;Excel</a>
-        </div> -->
-        <h2>Manage Event (จัดการหน้าอีเว้นท)</h2>
-    </div>
-    <div class="card-body">
-        <div class="card-header" id="card_radius" style="background-color: #F8F8F8">
+<body class="g-sidenav-show   bg-gray-100">
+  <!-- <div class="min-height-300 bg-primary position-absolute w-100"></div> -->
+  <main class="main-content position-relative border-radius-lg ">
+      <div class="container-fluid py-4 ">
+        <div class="row">
+          <!-- <div class="col-12"> -->
+          <div class="card mb-4">
+            <!-- ปุ่มดำเนินการเพิ่ม -->
+            <!-- Navbar -->
+            <nav class="navbar navbar-main navbar-expand-lg px-0 mx-2 shadow-none border-radius-xl " id="navbarBlur" navbar-scroll="true">
+              <div class="container-fluid py-2 px-1">
+              <h3>Manage Event </h3>
+  
+              </div>
+            </nav>
+            <!-- End Navbar -->
+            <!-- ปุ่มดำเนินการเพิ่ม  -->
+            <div class="card-header pb-0 ">
             <h4>
                 รายการ Event <?php {
                                     echo "  ";
@@ -75,7 +83,7 @@ button{
                         <?php
                         $No = 1;
                         for ($i = 0; $i < count($arr_event); $i++) { ?>
- <form  action="<?php echo site_url() ?>Event_Management/show_event_list_detail_member" method="post" enctype="multipart/form-data" name="event">
+                <form  action="<?php echo site_url() ?>Event_Management/show_event_list_detail_member" method="post" enctype="multipart/form-data" name="event">
                         <input type="hidden"  name="EventID" value="<?php echo $arr_event[$i]->evt_id ?>">
                          
                        
@@ -119,8 +127,11 @@ button{
             </div>
         </div>
     </div>
-     
+    </div>  
 </div>
+
+</main>
+                                    </body>
 <script>
 function deleteRow(r) {
     var i = r.parentNode.parentNode.rowIndex;

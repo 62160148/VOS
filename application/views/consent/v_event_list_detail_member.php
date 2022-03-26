@@ -38,7 +38,7 @@ img {
             <!-- Navbar -->
             <nav class="navbar navbar-main navbar-expand-lg px-0 mx-2 shadow-none border-radius-xl " id="navbarBlur" navbar-scroll="true">
               <div class="container-fluid py-2 px-1">
-              <h2>Manage Event (จัดการหน้าอีเว้นท์)</h2>
+              <h2>Manage Event </h2>
   
               </div>
             </nav>
