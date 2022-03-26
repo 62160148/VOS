@@ -176,7 +176,7 @@ h4 {
                                     ?>
                                     <!-- Action -->
                                     <td class="align-middle text-center text-sm">
-                                        <a href="">
+                                        <a href="<?php echo site_url() . 'Vote/vote/' . $arr_event[$i]->evt_id; ?>">
                                             <button type="button" class="btn btn-xs button_size"
                                                 style="background-color: #596CFF;">
                                                     <i class="fas fa-search text-white"></i>

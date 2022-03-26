@@ -30,4 +30,12 @@ class M_vos_event extends Da_vos_event
         $query = $this->db->query($sql, array($this->Evnt_id));
         return $query;
     }
+    public function get_event_all_by_id($id)
+    {
+        $sql = "SELECT * 
+        FROM vos_database.vos_event as Evnt WHERE Evnt.evt_id=$id";
+        $query = $this->db->query($sql);
+        return $query;
+    }
+ 
 }
