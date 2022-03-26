@@ -15,7 +15,7 @@ table {
     border-radius: 50px;
 }
 
-/* 
+
 .image-cropper {
     width: 50px;
     height: 50px;
@@ -29,7 +29,7 @@ img {
     margin: 0 auto;
     height: 100%;
     width: auto;
-} */
+}
 </style>
 <div class="container-fluid py-4">
     <div class="card-header" id="card_radius">
@@ -77,10 +77,9 @@ img {
                                 <!-- <div class="image-cropper"><img
                                         src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
                                         width="50" height="50"> มกุล 0</div> -->
-                                <img src="<?php echo base_url() ?>event/GOOD.png" width="20" height="20"> <?php
-                                                                                                                echo $arr_event[$i]->evt_name;
-                                                                                                                ?>
-                            </td>
+                                <img class="image-cropper"
+                                    src="../assests/image/event/<?php echo $arr_event[$i]->evt_image ?>"
+                                    alt="Card image cap" width="800px"><br><br>
                             <td> <?php {
                                             echo $arr_event[$i]->evt_start_date;
                                         } ?></td>
