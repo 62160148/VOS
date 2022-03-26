@@ -4,6 +4,17 @@ table {
     align-items: center;
 }
 
+.btn-glyphicon {
+    padding: 8px;
+
+    margin-right: 4px;
+}
+
+.icon-btn {
+    padding: 1px 15px 3px 2px;
+    border-radius: 50px;
+}
+
 /* 
 .image-cropper {
     width: 50px;
@@ -33,7 +44,10 @@ img {
             <h4>
                 รายการ Event <?php {
                                     echo "  ";
-                                } ?><i class='fa fa-plus-circle'></i>
+                                } ?><a class="btn icon-btn btn-info" href="#">
+                    <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>
+                    ADD
+                </a>
             </h4>
             <div class="table-responsive">
                 <table class="table" style="width:100%" id="example">
@@ -63,17 +77,24 @@ img {
                                 <!-- <div class="image-cropper"><img
                                         src="https://int-studentblog.dtu.dk/-/media/subsites/int-studentblog/group-work/2015_08_22_dtu_introdag_0135_web-72dpi_2.jpg?h=627&la=da&mw=940&w=940&hash=E7E705F39561142F1337B58AED4FF06E9AB62967"
                                         width="50" height="50"> มกุล 0</div> -->
-                                <?php
-                                    echo $arr_event[$i]->evt_image;
-                                    ?>
+                                <img src="<?php echo base_url() ?>event/GOOD.png" width="20" height="20"> <?php
+                                                                                                                echo $arr_event[$i]->evt_name;
+                                                                                                                ?>
                             </td>
-                            <td>11/3/2021 13:00:00</td>
-                            <td>11/3/2021 17:00:00</td>
-                            <td> <i class='fa-solid fa-plus'></i></td>
-                            <td><i class='fa fa-edit' style="color:#cfb017;"></i></td>
+                            <td> <?php {
+                                            echo $arr_event[$i]->evt_start_date;
+                                        } ?></td>
+                            <td> <?php {
+                                            echo $arr_event[$i]->evt_end_date;
+                                        } ?></td>
+                            <td> <a class="btn icon-btn btn-info" href="#">
+                                    <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>
+                                    + MEMBER
+                                </a></td>
+                            <td><i class='fa fa-edit' style="font-size: 2em; color:#cfb017;"></i></td>
                             <td>
                                 <div onclick="deleteRow(this)">
-                                    <i class='fa fa-trash' style="color: red;"></i>
+                                    <i class='fa fa-trash' style="color: red;  font-size: 2em;"></i>
                                 </div>
                             </td>
                         </tr>
