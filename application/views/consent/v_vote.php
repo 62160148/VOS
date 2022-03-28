@@ -32,55 +32,8 @@
     }
 
     #chart-container {
-        width: 640px;
+        width: 1000px;
         height: auto;
-    }
-
-    .highcharts-figure,
-    .highcharts-data-table table {
-        min-width: 310px;
-        max-width: 800px;
-        margin: 1em auto;
-    }
-
-    #container {
-        height: 400px;
-    }
-
-    .highcharts-data-table table {
-        font-family: Verdana, sans-serif;
-        border-collapse: collapse;
-        border: 1px solid #ebebeb;
-        margin: 10px auto;
-        text-align: center;
-        width: 100%;
-        max-width: 500px;
-    }
-
-    .highcharts-data-table caption {
-        padding: 1em 0;
-        font-size: 1.2em;
-        color: #555;
-    }
-
-    .highcharts-data-table th {
-        font-weight: 600;
-        padding: 0.5em;
-    }
-
-    .highcharts-data-table td,
-    .highcharts-data-table th,
-    .highcharts-data-table caption {
-        padding: 0.5em;
-    }
-
-    .highcharts-data-table thead tr,
-    .highcharts-data-table tr:nth-child(even) {
-        background: #f8f8f8;
-    }
-
-    .highcharts-data-table tr:hover {
-        background: #f1f7ff;
     }
 </style>
 
@@ -108,17 +61,13 @@
                         <div class="col-xl-12">
                             <div class="card">
                                 <div class="card-header bg-transparent">
-                                    <div class="row align-items-center">
-                                        <div class="col-lg-6">
-                                            <h5 class="text-black mb-0">กราฟแสดงผลการคะแนนการโหวต</h5>
-                                        </div>
+                                    <div class="col-6 d-flex align-items-center">
+                                        <h5 class="text-black mb-0">กราฟแสดงผลการคะแนนการโหวต</h5>&emsp;
+                                        <button onclick='show_all_data()' class="btn btn-primary mb-0">แสดง</button>
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <figure class="highcharts-figure">
-                                        <div id="container"></div>
-                                    </figure>
-                                    <!-- <canvas id="myChart" class="chart-canvas"></canvas> -->
+                                    <canvas id="myChart" class="chart-canvas"></canvas>
                                 </div>
                             </div>
                         </div>
@@ -189,91 +138,130 @@
 </div>
 <!-- End modal add group assessor -->
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.js"></script>
+<script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+<script src="https://unpkg.com/file-saver@1.3.3/FileSaver.js"></script>
 
 <script>
     $(document).ready(function() {
-        get_data();
+        $("#count_graph").show();
     });
 
-    function get_data() {
-        $.ajax({
-            type: 'post',
-            url: '<?php echo site_url() . "/Vote/get_point"; ?>',
-            data: {},
-            dataType: 'json',
-            success: function(json_data) {
-                set_graph(json_data['cluster']);
+    function show_chart(label, data) {
+        var bar_charts = document.getElementById("myChart");
+        var myChart = new Chart(bar_charts, {
+            type: 'bar',
+            data: {
+                labels: label,
+                datasets: [{
+                    label: 'Cluster Point',
+                    data: data,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255,99,132,1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
             }
         });
+
     }
 
-    // Create the chart
-    function set_graph(cluster) {
-
-        arr_cluster = [];
-        arr_score = [];
-
-        for (i = 0; i < cluster.length; i++) {
-            console.log(cluster[i].top_name);
-            console.log(cluster[i].pot_point);
-
-            arr_cluster.push(cluster[i].top_name);
-            arr_score.push(parseInt(cluster[i].pot_point));
-        }
-
-
-        const chart = Highcharts.chart('container', {
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'กราฟแสดงผลการคะแนนการโหวต'
-            },
-            accessibility: {
-                announceNewData: {
-                    enabled: true
-                }
-            },
-            xAxis: {
-                categories: arr_cluster,
-                crosshair: true
-            },
-            yAxis: {
-                min: 0,
-                title: {
-                    text: 'คะแนนโหวต'
-                }
+    function show_all_data() {
+        const label = [];
+        var check = '';
+        const data = [];
+        var point = 0;
+        var count = 0;
+        const Top = [];
+        $.ajax({
+            type: 'POST',
+            url: "<?php echo base_url() ?>/Vote/get_point",
+            dataType: "JSON",
+            data: {
 
             },
-            legend: {
-                enabled: false
-            },
-            plotOptions: {
-                column: {
-                    pointPadding: 0.2,
-                    borderWidth: 0
-                }
-            },
+            success: function(data_charts) {
+                console.log(data_charts);
 
-            tooltip: {
-                headerFormat: '<span style="font-size:11px">{point.key}</span><br>',
-                pointFormat: 'คะแนน : <b>{point.y:.2f}%</b>',
-                shared: true,
-                useHTML: true
+                data_charts.forEach((row, index) => {
+                    if (index == 0) {
+                        label.push(row.top_name);
+                        Top.push(row.pot_top_id);
+                        check = row.top_name;
+                    } else if (check != row.top_name) {
+                        label.push(row.top_name);
+                        Top.push(row.pot_top_id);
+                        check = row.top_name;
+                    }
+
+                });
+                // forEach data_charts
+                label.forEach((row_label, index) => {
+                    data_charts.forEach((row, index) => {
+                        if (row_label == row.top_name) {
+                            point += parseInt(row.pot_point);
+                        }
+                    });
+                    data.push(point);
+                });
+                // forEach label
+                $("#count_graph").show();
+
+                show_chart(label, data);
+
             },
+            error: function(res) {
 
-            series: [{
-                type: 'column',
-                colorByPoint: true,
-                showInLegend: false,
-                data: arr_score
-
-            }]
+            }
         });
+
     }
 </script>

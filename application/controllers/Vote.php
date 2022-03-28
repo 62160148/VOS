@@ -37,7 +37,7 @@ class Vote extends MainController
     public function get_point()
 	{
 		$this->load->model('M_vos_point', 'poi');
-		$data['cluster'] = $this->poi->get_score_to_chart()->result();
+		$data = $this->poi->get_score_to_chart()->result();
 		echo json_encode($data);
 	}
 
