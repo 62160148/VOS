@@ -10,7 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 include_once("Da_vos_user_login.php");
 
 
-class M_vos_user_login extends vos_model
+class M_vos_user_login extends Da_vos_user_login
 { //class M_vos_user_login
 
     public function __construct()
